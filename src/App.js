@@ -89,7 +89,9 @@ const App = () => {
         loginForm()
       ) : (
         <div>
-          <p>{user.username} logged-in</p>
+          <p>{user.username} logged-in
+          <button onClick={() => setUser(null)}>Log out</button>
+          </p>
           {blogList()}
         </div>
       )}
