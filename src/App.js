@@ -1,64 +1,66 @@
-import React, { useState, useEffect } from 'react'
-import Blog from './components/Blog'
-import blogService from './services/blogs'
-import loginService from './services/login' 
-
+import React, { useState, useEffect } from "react";
+import Blog from "./components/Blog";
+import blogService from "./services/blogs";
+import loginService from "./services/login";
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
-  const [user, setUser] = useState(null)
+  const [blogs, setBlogs] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs( blogs )
-    )  
-  }, [])
+    blogService.getAll().then((blogs) => setBlogs(blogs));
+  }, []);
 
   const handleLogin = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
       const user = await loginService.login({
-        username, password,
-      })
+        username,
+        password,
+      });
 
-      setUser(user)
-      setUsername('')
-      setPassword('')
-      console.log(user)
+      setUser(user);
+      setUsername("");
+      setPassword("");
+      console.log(user);
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
+      setErrorMessage("Wrong credentials");
       setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+        setErrorMessage(null);
+      }, 5000);
     }
-  }
+  };
 
   const loginForm = () => (
-    <form onSubmit={handleLogin}>
-      <div>
-        username
+    <div>
+      <h1>Login</h1>
+
+      <form onSubmit={handleLogin}>
+        <div>
+          username
           <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)}
-        />
-      </div>
-      <div>
-        password
+            type="text"
+            value={username}
+            name="Username"
+            onChange={({ target }) => setUsername(target.value)}
+          />
+        </div>
+        <div>
+          password
           <input
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">login</button>
-    </form>      
-  )
+            type="password"
+            value={password}
+            name="Password"
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </div>
+        <button type="submit">login</button>
+      </form>
+    </div>
+  );
 
   // const noteForm = () => (
   //   <form onSubmit={addNote}>
@@ -67,28 +69,30 @@ const App = () => {
   //       onChange={handleNoteChange}
   //     />
   //     <button type="submit">save</button>
-  //   </form>  
+  //   </form>
   // )
 
   const blogList = () => (
     <div>
-       <h2>blogs</h2>
-       <div>{user.username} logged in</div>
-       <br />
-       {blogs.map(blog =>
-         <Blog key={blog.id} blog={blog} />
-       )}
-     </div>
-  )
+      <h2>blogs</h2>
+      {blogs.map((blog) => (
+        <Blog key={blog.id} blog={blog} />
+      ))}
+    </div>
+  );
 
   return (
     <div>
-      <h1>Login</h1>
-
       {/* <Notification message={errorMessage} /> */}
 
-      {user === null && loginForm()}
-      {user !== null && blogList()}
+      {user === null ? (
+        loginForm()
+      ) : (
+        <div>
+          <p>{user.username} logged-in</p>
+          {blogList()}
+        </div>
+      )}
 
       {/* <div>
         <button onClick={() => setShowAll(!showAll)}>
@@ -107,47 +111,46 @@ const App = () => {
 
       {/* <Footer /> */}
     </div>
-  )
-}
+  );
+};
 
+// if (user === null) {
+// return (
+//   <div>
+//     <h2>Login</h2>
+//     <form onSubmit={handleLogin}>
+//       <div>
+//         username
+//           <input
+//           type="text"
+//           value={username}
+//           name="Username"
+//           onChange={({ target }) => setUsername(target.value)}
+//         />
+//       </div>
+//       <div>
+//         password
+//           <input
+//           type="password"
+//           value={password}
+//           name="Password"
+//           onChange={({ target }) => setPassword(target.value)}
+//         />
+//       </div>
+//       <button type="submit">login</button>
+//     </form>
+//     </div>
+//   )
+// }
 
-  // if (user === null) {
-  // return (
-  //   <div>
-  //     <h2>Login</h2>
-  //     <form onSubmit={handleLogin}>
-  //       <div>
-  //         username
-  //           <input
-  //           type="text"
-  //           value={username}
-  //           name="Username"
-  //           onChange={({ target }) => setUsername(target.value)}
-  //         />
-  //       </div>
-  //       <div>
-  //         password
-  //           <input
-  //           type="password"
-  //           value={password}
-  //           name="Password"
-  //           onChange={({ target }) => setPassword(target.value)}
-  //         />
-  //       </div>
-  //       <button type="submit">login</button>
-  //     </form>
-  //     </div>
-  //   )
-  // }
-
-  //     return (
-  //   <div>
-  //     <h2>blogs</h2>
-  //     {blogs.map(blog =>
-  //       <Blog key={blog.id} blog={blog} />
-  //     )}
-  //   </div>
-  // )
+//     return (
+//   <div>
+//     <h2>blogs</h2>
+//     {blogs.map(blog =>
+//       <Blog key={blog.id} blog={blog} />
+//     )}
+//   </div>
+// )
 //}
 
-export default App
+export default App;
