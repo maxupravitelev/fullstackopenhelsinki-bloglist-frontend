@@ -69,6 +69,14 @@ const App = () => {
   //   </form>  
   // )
 
+  const blogList = () => (
+    <div>
+       <h2>blogs</h2>
+       {blogs.map(blog =>
+         <Blog key={blog.id} blog={blog} />
+       )}
+     </div>
+  )
 
   return (
     <div>
@@ -77,7 +85,7 @@ const App = () => {
       {/* <Notification message={errorMessage} /> */}
 
       {user === null && loginForm()}
-      {/* {user !== null && noteForm()} */}
+      {user === null && blogList()}
 
       {/* <div>
         <button onClick={() => setShowAll(!showAll)}>
