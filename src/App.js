@@ -16,6 +16,15 @@ const App = () => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
   }, []);
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogService.setToken(user.token)
+    }
+  }, []) // "The empty array as the parameter of the effect ensures that the effect is executed only when the component is rendered for the first time."
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -23,6 +32,10 @@ const App = () => {
         username,
         password,
       });
+
+      window.localStorage.setItem(
+        'loggedBlogAppUser', JSON.stringify(user)
+      ) 
 
       blogService.setToken(user.token);
 
@@ -114,7 +127,10 @@ const App = () => {
         <div>
           <p>
             {/* {user.username} logged-in */}
-            <button onClick={() => setUser(null)}>Log out</button>
+            <button onClick={() => {
+              window.localStorage.removeItem('loggedNoteappUser')
+              setUser(null)
+              }}>Log out</button>
           </p>
           <AddBlogForm 
             addBlog={addBlog}
