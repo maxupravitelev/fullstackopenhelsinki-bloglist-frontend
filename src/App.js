@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from "react";
+
 import AddBlogForm from "./components/AddBlogForm";
 import Blog from "./components/Blog";
+import Notification from "./components/Notification"
+
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
 
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [messageColor, setMessageColor] = useState("red");
+
+  const notificationStyle = {
+    color: messageColor,
+    background: "lightgrey",
+    fontSize: 20,
+    borderStyle: "solid",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  };
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -43,7 +58,10 @@ const App = () => {
       setUsername("");
       setPassword("");
       console.log(user);
+
+
     } catch (exception) {
+      setMessageColor("red");
       setErrorMessage("Wrong credentials");
       setTimeout(() => {
         setErrorMessage(null);
@@ -54,7 +72,7 @@ const App = () => {
   const loginForm = () => (
     <div>
       <h1>Login</h1>
-
+      <Notification message={errorMessage} styleMessage={notificationStyle} />
       <form onSubmit={handleLogin}>
         <div>
           username
@@ -100,6 +118,12 @@ const App = () => {
 
       console.log(newBlogList)
 
+      setMessageColor("green");
+      setErrorMessage(`'${newBlog.title}' by '${newBlog.author}' added`);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
+
       setBlogs(newBlogList)
 
     }
@@ -110,6 +134,8 @@ const App = () => {
 
   const blogList = () => (
     <div>
+      <Notification message={errorMessage} styleMessage={notificationStyle} />
+
       <h2>blogs</h2>
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} />
