@@ -70,7 +70,9 @@ const App = () => {
   );
 
     const addBlog = () => {
-      // console.log(newBlog)
+      blogService.create(newBlog).then((response) => {
+        console.log(response)
+      })
  
     }
 
@@ -146,13 +148,13 @@ const App = () => {
       ) : (
         <div>
           <p>
-            {user.username} logged-in
+            {/* {user.username} logged-in */}
             <button onClick={() => setUser(null)}>Log out</button>
           </p>
           {newBlogForm()}
           {blogList()}
         </div>
-      )}
+     )}
 
       {/* <div>
         <button onClick={() => setShowAll(!showAll)}>
