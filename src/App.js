@@ -66,11 +66,29 @@ const App = () => {
     </div>
   );
 
-    const addBlog = (title, author, url) => {
-      blogService.create({title, author, url}).then((response) => {
-        console.log(response)
-      })
+    const addBlog = async (title, author, url) => {
+      
+      const newBlog = {title, author, url}
+      
+      // blogService.create(newBlog).then((response) => {
+      //   console.log(response)
+      // })
+
+      // setBlogs([
+      //   ...blogs,
+      //   newBlog
+      // ])
  
+      // blogService.getAll().then((blogs) => setBlogs(blogs));
+
+      await blogService.create(newBlog)
+
+      const newBlogList = await blogService.getAll()
+
+      console.log(newBlogList)
+
+      setBlogs(newBlogList)
+
     }
 
 
