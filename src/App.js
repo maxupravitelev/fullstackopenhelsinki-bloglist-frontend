@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AddBlogForm from "./components/AddBlogForm";
 import Blog from "./components/Blog";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
@@ -9,11 +10,7 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
-  const [newBlog, setNewBlog] = useState({
-    title: '',
-    author: '',
-    url: ''
-  })
+
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -69,66 +66,16 @@ const App = () => {
     </div>
   );
 
-    const addBlog = () => {
-      blogService.create(newBlog).then((response) => {
+    const addBlog = (title, author, url) => {
+      blogService.create({title, author, url}).then((response) => {
         console.log(response)
       })
  
     }
 
-    const handleBlogFormChange = (event) => {
-      let name = event.target.name;
-
-      let newBlogToBeCreated = event.target.value;
-
-      setNewBlog({
-        ...newBlog,
-        [name]: newBlogToBeCreated
-      })
-    } 
-
-  const newBlogForm = () => (
-    <div>
 
 
-      <form onSubmit={addBlog}>
-        
-      <div>
-        title:
-        <input
-          type="text"
-          value={newBlog.title}
-          name="title"
-          // onChange={({ target }) => setNewBlog(target.value)}
-          onChange={handleBlogFormChange}
-    />
-      </div>
-      <div>
-        author:
-        <input
-          type="text"
-          value={newBlog.author}
-          name="author"
-          // onChange={({ target }) => setNewBlog(target.value)}
-          onChange={handleBlogFormChange}
-
-        />
-      </div>
-      <div>
-        url:
-        <input
-          type="text"
-          value={newBlog.url}
-          name="url"
-          // onChange={({ target }) => setNewBlog(target.value)}
-          onChange={handleBlogFormChange}
-
-        />
-      </div>
-        <button type="submit">create</button>
-      </form>
-    </div>
-  );
+  
 
   const blogList = () => (
     <div>
@@ -151,7 +98,9 @@ const App = () => {
             {/* {user.username} logged-in */}
             <button onClick={() => setUser(null)}>Log out</button>
           </p>
-          {newBlogForm()}
+          <AddBlogForm 
+            addBlog={addBlog}
+            />
           {blogList()}
         </div>
      )}
