@@ -2,6 +2,12 @@ import React, { useState } from "react";
 
 const AddBlogForm = ({ addBlog }) => {
 
+  const [newBlogFormVisible, setBlogFormVisible] = useState(false)
+
+
+  const hideWhenVisible = { display: newBlogFormVisible ? 'none' : '' }
+  const showWhenVisible = { display: newBlogFormVisible ? '' : 'none' }
+
     const emptyBlogFormField = {
       title: '',
       author: '',
@@ -35,8 +41,11 @@ const AddBlogForm = ({ addBlog }) => {
 return (
 
     <div>
+      <div style={hideWhenVisible}>
+          <button onClick={() => setBlogFormVisible(true)}>new blog</button>
+        </div>
 
-
+      <div style={showWhenVisible}>
       <form onSubmit={handleSubmit}>
         
       <div>
@@ -72,7 +81,10 @@ return (
         />
       </div>
         <button type="submit">create</button>
+        
       </form>
+        <button onClick={() => setBlogFormVisible(false)}>cancel</button>
+      </div>
     </div>
 
 )
