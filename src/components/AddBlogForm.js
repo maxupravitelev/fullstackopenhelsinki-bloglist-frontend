@@ -1,97 +1,75 @@
 import React, { useState } from "react";
+import Togglable from "../components/Togglable"
+
 
 const AddBlogForm = ({ addBlog }) => {
 
-  const [newBlogFormVisible, setBlogFormVisible] = useState(false)
+  const emptyBlogFormField = {
+    title: "",
+    author: "",
+    url: "",
+  };
 
+  const [newBlog, setNewBlog] = useState(emptyBlogFormField);
 
-  const hideWhenVisible = { display: newBlogFormVisible ? 'none' : '' }
-  const showWhenVisible = { display: newBlogFormVisible ? '' : 'none' }
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const emptyBlogFormField = {
-      title: '',
-      author: '',
-      url: ''
-    }
-  
-    const [newBlog, setNewBlog] = useState(emptyBlogFormField)
+    if (!newBlog) return;
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
+    addBlog(newBlog.title, newBlog.author, newBlog.url);
 
-      if (!newBlog) return;
+    setNewBlog(emptyBlogFormField);
+  };
 
-      addBlog(newBlog.title, newBlog.author, newBlog.url)
+  const handleBlogFormChange = (event) => {
+    let name = event.target.name;
 
-      setNewBlog(emptyBlogFormField)
+    let newBlogToBeCreated = event.target.value;
 
-      setBlogFormVisible(false)
-    }
+    setNewBlog({
+      ...newBlog,
+      [name]: newBlogToBeCreated,
+    });
+  };
 
-    const handleBlogFormChange = (event) => {
-        let name = event.target.name;
-  
-        let newBlogToBeCreated = event.target.value;
-  
-        setNewBlog({
-          ...newBlog,
-          [name]: newBlogToBeCreated
-        })
-      } 
-
-
-return (
-
+  return (
     <div>
-      <div style={hideWhenVisible}>
-          <button onClick={() => setBlogFormVisible(true)}>new blog</button>
-        </div>
 
-      <div style={showWhenVisible}>
-      <form onSubmit={handleSubmit}>
-        
-      <div>
-        title:
-        <input
-          type="text"
-          value={newBlog.title}
-          name="title"
-          // onChange={({ target }) => setNewBlog(target.value)}
-          onChange={handleBlogFormChange}
-    />
-      </div>
-      <div>
-        author:
-        <input
-          type="text"
-          value={newBlog.author}
-          name="author"
-          // onChange={({ target }) => setNewBlog(target.value)}
-          onChange={handleBlogFormChange}
-
-        />
-      </div>
-      <div>
-        url:
-        <input
-          type="text"
-          value={newBlog.url}
-          name="url"
-          // onChange={({ target }) => setNewBlog(target.value)}
-          onChange={handleBlogFormChange}
-
-        />
-      </div>
-        <button type="submit">create</button>
-        
-      </form>
-        <button onClick={() => setBlogFormVisible(false)}>cancel</button>
-      </div>
+      <Togglable buttonLabel='new blog'>
+        <form onSubmit={handleSubmit}>
+          <div>
+            title:
+            <input
+              type="text"
+              value={newBlog.title}
+              name="title"
+              onChange={handleBlogFormChange}
+            />
+          </div>
+          <div>
+            author:
+            <input
+              type="text"
+              value={newBlog.author}
+              name="author"
+              onChange={handleBlogFormChange}
+            />
+          </div>
+          <div>
+            url:
+            <input
+              type="text"
+              value={newBlog.url}
+              name="url"
+              onChange={handleBlogFormChange}
+            />
+          </div>
+          <button type="submit">create</button>
+        </form>
+        </Togglable>
     </div>
+  );
+};
 
-)
-
-
-}
-
-export default AddBlogForm
+export default AddBlogForm;

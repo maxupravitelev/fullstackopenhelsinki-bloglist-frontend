@@ -4,12 +4,13 @@ import AddBlogForm from "./components/AddBlogForm";
 import Blog from "./components/Blog";
 import Notification from "./components/Notification"
 import LoginForm from "./components/LoginForm"
+import Togglable from "./components/Togglable"
 
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 
 const App = () => {
-  const [loginVisible, setLoginVisible] = useState(false)
+  // const [loginVisible, setLoginVisible] = useState(false)
 
   const [blogs, setBlogs] = useState([]);
 
@@ -94,24 +95,22 @@ const App = () => {
     }
     
     const loginForm = () => {
-      const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-      const showWhenVisible = { display: loginVisible ? '' : 'none' }
+      // const hideWhenVisible = { display: loginVisible ? 'none' : '' }
+      // const showWhenVisible = { display: loginVisible ? '' : 'none' }
   
       return (
         <div>
-          <div style={hideWhenVisible}>
-            <button onClick={() => setLoginVisible(true)}>log in</button>
-          </div>
-          <div style={showWhenVisible}>
+            <div>
             <Notification message={errorMessage} styleMessage={notificationStyle} />
-            <LoginForm
-              username={username}
-              password={password}
-              handleUsernameChange={({ target }) => setUsername(target.value)}
-              handlePasswordChange={({ target }) => setPassword(target.value)}
-              handleLogin={handleLogin}
-            />
-            <button onClick={() => setLoginVisible(false)}>cancel</button>
+            <Togglable buttonLabel='login'>
+              <LoginForm
+                username={username}
+                password={password}
+                handleUsernameChange={({ target }) => setUsername(target.value)}
+                handlePasswordChange={({ target }) => setPassword(target.value)}
+                handleLogin={handleLogin}
+              />
+            </Togglable>
           </div>
         </div>
       )
@@ -141,6 +140,7 @@ const App = () => {
             {/* {user.username} logged-in */}
             <button onClick={() => {
               window.localStorage.removeItem('loggedNoteappUser')
+              window.localStorage.clear()
               setUser(null)
               }}>Log out</button>
           </p>
