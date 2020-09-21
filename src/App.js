@@ -3,11 +3,14 @@ import React, { useState, useEffect } from "react";
 import AddBlogForm from "./components/AddBlogForm";
 import Blog from "./components/Blog";
 import Notification from "./components/Notification"
+import LoginForm from "./components/LoginForm"
 
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 
 const App = () => {
+  const [loginVisible, setLoginVisible] = useState(false)
+
   const [blogs, setBlogs] = useState([]);
 
   const [username, setUsername] = useState("");
@@ -69,49 +72,11 @@ const App = () => {
     }
   };
 
-  const loginForm = () => (
-    <div>
-      <h1>Login</h1>
-      <Notification message={errorMessage} styleMessage={notificationStyle} />
-      <form onSubmit={handleLogin}>
-        <div>
-          username
-          <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-          <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">login</button>
-      </form>
-    </div>
-  );
 
     const addBlog = async (title, author, url) => {
       
       const newBlog = {title, author, url}
       
-      // blogService.create(newBlog).then((response) => {
-      //   console.log(response)
-      // })
-
-      // setBlogs([
-      //   ...blogs,
-      //   newBlog
-      // ])
- 
-      // blogService.getAll().then((blogs) => setBlogs(blogs));
-
       await blogService.create(newBlog)
 
       const newBlogList = await blogService.getAll()
@@ -127,9 +92,29 @@ const App = () => {
       setBlogs(newBlogList)
 
     }
-
-
-
+    
+    const loginForm = () => {
+      const hideWhenVisible = { display: loginVisible ? 'none' : '' }
+      const showWhenVisible = { display: loginVisible ? '' : 'none' }
+  
+      return (
+        <div>
+          <div style={hideWhenVisible}>
+            <button onClick={() => setLoginVisible(true)}>log in</button>
+          </div>
+          <div style={showWhenVisible}>
+            <LoginForm
+              username={username}
+              password={password}
+              handleUsernameChange={({ target }) => setUsername(target.value)}
+              handlePasswordChange={({ target }) => setPassword(target.value)}
+              handleLogin={handleLogin}
+            />
+            <button onClick={() => setLoginVisible(false)}>cancel</button>
+          </div>
+        </div>
+      )
+      }
   
 
   const blogList = () => (
@@ -165,63 +150,10 @@ const App = () => {
         </div>
      )}
 
-      {/* <div>
-        <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? 'important' : 'all'}
-        </button>
-      </div> */}
-      {/* <ul>
-        {notesToShow.map((note, i) => 
-          <Note
-            key={i}
-            note={note} 
-            toggleImportance={() => toggleImportanceOf(note.id)}
-          />
-        )} */}
-      {/* </ul> */}
-
       {/* <Footer /> */}
     </div>
   );
 };
 
-// if (user === null) {
-// return (
-//   <div>
-//     <h2>Login</h2>
-//     <form onSubmit={handleLogin}>
-//       <div>
-//         username
-//           <input
-//           type="text"
-//           value={username}
-//           name="Username"
-//           onChange={({ target }) => setUsername(target.value)}
-//         />
-//       </div>
-//       <div>
-//         password
-//           <input
-//           type="password"
-//           value={password}
-//           name="Password"
-//           onChange={({ target }) => setPassword(target.value)}
-//         />
-//       </div>
-//       <button type="submit">login</button>
-//     </form>
-//     </div>
-//   )
-// }
-
-//     return (
-//   <div>
-//     <h2>blogs</h2>
-//     {blogs.map(blog =>
-//       <Blog key={blog.id} blog={blog} />
-//     )}
-//   </div>
-// )
-//}
 
 export default App;
