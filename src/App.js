@@ -103,6 +103,7 @@ const App = () => {
             <button onClick={() => setLoginVisible(true)}>log in</button>
           </div>
           <div style={showWhenVisible}>
+            <Notification message={errorMessage} styleMessage={notificationStyle} />
             <LoginForm
               username={username}
               password={password}

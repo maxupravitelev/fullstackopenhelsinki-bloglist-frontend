@@ -6,7 +6,6 @@ const LoginForm = ({ username, password, handleUsernameChange, handlePasswordCha
   return (
     <div>
       <h1>Login</h1>
-      {/* <Notification message={errorMessage} styleMessage={notificationStyle} /> */}
       <form onSubmit={handleLogin}>
         <div>
           username
