@@ -24,6 +24,8 @@ const AddBlogForm = ({ addBlog }) => {
       addBlog(newBlog.title, newBlog.author, newBlog.url)
 
       setNewBlog(emptyBlogFormField)
+
+      setBlogFormVisible(false)
     }
 
     const handleBlogFormChange = (event) => {
