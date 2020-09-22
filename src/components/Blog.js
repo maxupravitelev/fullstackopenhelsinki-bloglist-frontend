@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import blogService from "../services/blogs";
+
 
 const Blog = ({ blog }) => {
   const [blogExpanded, setBlogExpanded] = useState(false);
@@ -11,7 +13,13 @@ const Blog = ({ blog }) => {
     marginBottom: 5,
   };
 
+  const addLike = () => {
+    
+    blog.likes = blog.likes + 1
+    blogService.update(blog)
   
+  
+  }
 
   if (blogExpanded === true) {
     return (
@@ -21,8 +29,8 @@ const Blog = ({ blog }) => {
         {blog.url}
         <br />
         
-        <p>likes
-        <button>like</button></p>
+    <p>{blog.likes} likes
+        <button onClick={() => addLike(blog)}>like</button></p>
         
         <button onClick={() => setBlogExpanded(false)}>hide</button>
       </div>
