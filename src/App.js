@@ -10,7 +10,6 @@ import blogService from "./services/blogs";
 import loginService from "./services/login";
 
 const App = () => {
-  // const [loginVisible, setLoginVisible] = useState(false)
 
   const [blogs, setBlogs] = useState([]);
 
@@ -75,7 +74,7 @@ const App = () => {
 
 
     const addBlog = async (title, author, url) => {
-      
+          
       const newBlog = {title, author, url}
       
       await blogService.create(newBlog)

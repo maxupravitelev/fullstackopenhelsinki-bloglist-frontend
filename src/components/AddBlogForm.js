@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Togglable from "../components/Togglable"
 
 
@@ -12,7 +12,11 @@ const AddBlogForm = ({ addBlog }) => {
 
   const [newBlog, setNewBlog] = useState(emptyBlogFormField);
 
+  const blogFormRef = useRef()
+
   const handleSubmit = (event) => {
+    blogFormRef.current.toggleVisibility()
+    
     event.preventDefault();
 
     if (!newBlog) return;
@@ -36,7 +40,7 @@ const AddBlogForm = ({ addBlog }) => {
   return (
     <div>
 
-      <Togglable buttonLabel='new blog'>
+      <Togglable buttonLabel='new blog' ref={blogFormRef}>
         <form onSubmit={handleSubmit}>
           <div>
             title:
