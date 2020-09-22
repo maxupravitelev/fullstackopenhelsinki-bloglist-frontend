@@ -115,14 +115,25 @@ const App = () => {
       )
       }
   
+      const addLike = (index) => {
+    
+        const newBlogs = [...blogs]
+
+        newBlogs[index].likes = newBlogs[index].likes + 1
+                
+        blogService.update(newBlogs[index])
+      
+        setBlogs(newBlogs)
+      }
+
 
   const blogList = () => (
     <div>
       <Notification message={errorMessage} styleMessage={notificationStyle} />
 
       <h2>blogs</h2>
-      {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
+      {blogs.map((blog, index) => (
+        <Blog key={blog.id} blog={blog} addLike={addLike} index={index}/>
       ))}
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import blogService from "../services/blogs";
 
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, addLike, index }) => {
   const [blogExpanded, setBlogExpanded] = useState(false);
 
   const blogStyle = {
@@ -13,13 +13,7 @@ const Blog = ({ blog }) => {
     marginBottom: 5,
   };
 
-  const addLike = () => {
-    
-    blog.likes = blog.likes + 1
-    blogService.update(blog)
-  
-  
-  }
+
 
   if (blogExpanded === true) {
     return (
@@ -30,7 +24,7 @@ const Blog = ({ blog }) => {
         <br />
         
     <p>{blog.likes} likes
-        <button onClick={() => addLike(blog)}>like</button></p>
+        <button onClick={() => addLike(index)}>like</button></p>
         
         <button onClick={() => setBlogExpanded(false)}>hide</button>
       </div>
