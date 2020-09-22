@@ -11,13 +11,19 @@ const Blog = ({ blog }) => {
     marginBottom: 5,
   };
 
+  
+
   if (blogExpanded === true) {
     return (
       <div style={blogStyle}>
         {blog.title} {blog.author}
-        <br></br>
+        <br />
         {blog.url}
-        <br></br>
+        <br />
+        
+        <p>likes
+        <button>like</button></p>
+        
         <button onClick={() => setBlogExpanded(false)}>hide</button>
       </div>
     );
@@ -25,7 +31,7 @@ const Blog = ({ blog }) => {
     return (
       <div style={blogStyle}>
         {blog.title}
-        <br></br>
+        <br />
         <button onClick={() => setBlogExpanded(true)}>view</button>
       </div>
     );
