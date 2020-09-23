@@ -43,8 +43,7 @@ const AddBlogForm = ({ addBlog }) => {
       <Togglable buttonLabel='new blog' ref={blogFormRef}>
         <form onSubmit={handleSubmit}>
           <div>
-            
-            <label htmlFor="title">title</label>
+            title:
             <input
               id="title"
               type="text"
@@ -57,6 +56,7 @@ const AddBlogForm = ({ addBlog }) => {
           <div>
             author:
             <input
+              id="author"
               type="text"
               value={newBlog.author}
               name="author"
@@ -66,6 +66,7 @@ const AddBlogForm = ({ addBlog }) => {
           <div>
             url:
             <input
+              id="url"
               type="text"
               value={newBlog.url}
               name="url"
