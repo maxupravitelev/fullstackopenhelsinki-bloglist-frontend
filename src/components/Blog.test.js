@@ -30,7 +30,8 @@ test('renders content with hidden details', () => {
 test('clicking view button opens blog', () => {
   const blog = {
     title: 'React patterns',
-    author: 'fsdfsdf',
+    author: 'some author',
+    url: 'www.test.net',
     likes: 5
   }
 
@@ -40,15 +41,22 @@ test('clicking view button opens blog', () => {
     <Blog blog={blog} handleViewClick={mockHandler}/>
   )
 
+  expect(component.container).not.toHaveTextContent(
+    'www.test.net'
+  )
+
   const button = component.getByText('view')
   fireEvent.click(button)
 
-  console.log(mockHandler.mock.calls)
-
-//   expect(mockHandler.mock.calls).toHaveLength(1)
-    expect(component.container).toHaveTextContent(
+  //   expect(mockHandler.mock.calls).toHaveLength(1)
+  expect(component.container).toHaveTextContent(
     'hide'
   )
+
+  expect(component.container).toHaveTextContent(
+    'www.test.net'
+  )
+
 })
 
 test('click like twice', () => {
