@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 
-import AddBlogForm from "./components/AddBlogForm";
-import Blog from "./components/Blog";
-import Notification from "./components/Notification"
-import LoginForm from "./components/LoginForm"
-import Togglable from "./components/Togglable"
+import AddBlogForm from './components/AddBlogForm'
+import Blog from './components/Blog'
+import Notification from './components/Notification'
+import LoginForm from './components/LoginForm'
+import Togglable from './components/Togglable'
 
-import blogService from "./services/blogs";
-import loginService from "./services/login";
+import blogService from './services/blogs'
+import loginService from './services/login'
 
 const App = () => {
 
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState([])
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [userId, setUserId] = useState("");
-  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
 
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [messageColor, setMessageColor] = useState("red");
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [messageColor, setMessageColor] = useState('red')
 
   const notificationStyle = {
     color: messageColor,
-    background: "lightgrey",
+    background: 'lightgrey',
     fontSize: 20,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
-  };
+  }
 
 
   useEffect(() => {
@@ -37,13 +36,13 @@ const App = () => {
       let initBlogs = await blogService.getAll()
 
       initBlogs.sort((b, a) => a.likes - b.likes)
-      
+
       setBlogs(initBlogs)
     }
 
     getBlogs()
 
-  }, []);
+  }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
@@ -55,100 +54,99 @@ const App = () => {
   }, []) // "The empty array as the parameter of the effect ensures that the effect is executed only when the component is rendered for the first time."
 
   const handleLogin = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
     try {
       const user = await loginService.login({
         username,
         password,
-        id: userId
-      });
+      })
 
       window.localStorage.setItem(
         'loggedBlogAppUser', JSON.stringify(user)
-      ) 
+      )
 
-      blogService.setToken(user.token);
+      blogService.setToken(user.token)
 
-      setUser(user);
-      setUsername("");
-      setPassword("");
+      setUser(user)
+      setUsername('')
+      setPassword('')
 
     } catch (exception) {
-      setMessageColor("red");
-      setErrorMessage("Wrong credentials");
+      setMessageColor('red')
+      setErrorMessage('Wrong credentials')
       setTimeout(() => {
-        setErrorMessage(null);
-      }, 5000);
+        setErrorMessage(null)
+      }, 5000)
     }
-  };
+  }
 
 
-    const addBlog = async (title, author, url) => {
-          
-      const newBlog = {title, author, url}
-      
-      await blogService.create(newBlog)
+  const addBlog = async (title, author, url) => {
 
-      const newBlogList = await blogService.getAll()
+    const newBlog = { title, author, url }
 
-      console.log(newBlogList)
+    await blogService.create(newBlog)
 
-      setMessageColor("green");
-      setErrorMessage(`'${newBlog.title}' by '${newBlog.author}' added`);
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 5000);
+    const newBlogList = await blogService.getAll()
 
-      setBlogs(newBlogList)
+    console.log(newBlogList)
 
-    }
-    
-    const loginForm = () => {
-      // const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-      // const showWhenVisible = { display: loginVisible ? '' : 'none' }
-  
-      return (
+    setMessageColor('green')
+    setErrorMessage(`'${newBlog.title}' by '${newBlog.author}' added`)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
+
+    setBlogs(newBlogList)
+
+  }
+
+  const loginForm = () => {
+    // const hideWhenVisible = { display: loginVisible ? 'none' : '' }
+    // const showWhenVisible = { display: loginVisible ? '' : 'none' }
+
+    return (
+      <div>
         <div>
-            <div>
-            <Notification message={errorMessage} styleMessage={notificationStyle} />
-            <Togglable buttonLabel='login'>
-              <LoginForm
-                username={username}
-                password={password}
-                handleUsernameChange={({ target }) => setUsername(target.value)}
-                handlePasswordChange={({ target }) => setPassword(target.value)}
-                handleLogin={handleLogin}
-              />
-            </Togglable>
-          </div>
+          <Notification message={errorMessage} styleMessage={notificationStyle} />
+          <Togglable buttonLabel='login'>
+            <LoginForm
+              username={username}
+              password={password}
+              handleUsernameChange={({ target }) => setUsername(target.value)}
+              handlePasswordChange={({ target }) => setPassword(target.value)}
+              handleLogin={handleLogin}
+            />
+          </Togglable>
         </div>
-      )
-      }
-  
-      const addLike = (index) => {
-    
-        const newBlogs = [...blogs]
+      </div>
+    )
+  }
 
-        newBlogs[index].likes = newBlogs[index].likes + 1
-                
-        blogService.update(newBlogs[index])
-      
-        setBlogs(newBlogs)
-        // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
+  const addLike = (index) => {
 
-      }
+    const newBlogs = [...blogs]
 
-      const removeBlog = (index) => {
-        const newBlogs = [...blogs];
+    newBlogs[index].likes = newBlogs[index].likes + 1
 
-        newBlogs.splice(index, 1);
-        
+    blogService.update(newBlogs[index])
 
-        blogService.remove(blogs[index]["id"], user.id);
+    setBlogs(newBlogs)
+    // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
 
-        setBlogs(newBlogs);
-        // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
-      };
+  }
+
+  const removeBlog = (index) => {
+    const newBlogs = [...blogs]
+
+    newBlogs.splice(index, 1)
+
+
+    blogService.remove(blogs[index]['id'], user.id)
+
+    setBlogs(newBlogs)
+    // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
+  }
 
 
   const blogList = () => (
@@ -160,7 +158,7 @@ const App = () => {
         <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
       ))}
     </div>
-  );
+  )
 
   return (
     <div>
@@ -176,19 +174,19 @@ const App = () => {
               window.localStorage.removeItem('loggedNoteappUser')
               window.localStorage.clear()
               setUser(null)
-              }}>Log out</button>
+            }}>Log out</button>
           </p>
-          <AddBlogForm 
+          <AddBlogForm
             addBlog={addBlog}
-            />
+          />
           {blogList()}
         </div>
-     )}
+      )}
 
       {/* <Footer /> */}
     </div>
-  );
-};
+  )
+}
 
 
-export default App;
+export default App

@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 // import Notification from "./components/Notification";
 import PropTypes from 'prop-types'
 
 
-const LoginForm = ({ username, password, handleUsernameChange, handlePasswordChange, handleLogin}) => {
-  
+const LoginForm = ({ username, password, handleUsernameChange, handlePasswordChange, handleLogin }) => {
+
   return (
     <div>
       <h1>Login</h1>
@@ -30,8 +30,8 @@ const LoginForm = ({ username, password, handleUsernameChange, handlePasswordCha
         <button type="submit">login</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
 LoginForm.propTypes = {
   handleLogin: PropTypes.func.isRequired,

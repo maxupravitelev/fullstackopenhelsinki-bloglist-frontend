@@ -1,19 +1,17 @@
-import React, { useState } from "react";
-import blogService from "../services/blogs";
 
+import React, { useState } from 'react'
+// import blogService from '../services/blogs'
 
 const Blog = ({ blog, addLike, removeBlog, index }) => {
-  const [blogExpanded, setBlogExpanded] = useState(false);
+  const [blogExpanded, setBlogExpanded] = useState(false)
 
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
-    border: "solid",
+    border: 'solid',
     borderWidth: 1,
     marginBottom: 5,
-  };
-
-
+  }
 
   if (blogExpanded === true) {
     return (
@@ -22,14 +20,14 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
         <br />
         {blog.url}
         <br />
-        
-    <p>{blog.likes} likes
-        <button onClick={() => addLike(index)}>like</button>
-        <button onClick={() => removeBlog(index)}>delete</button></p>
-        
+
+        <p>{blog.likes} likes
+          <button onClick={() => addLike(index)}>like</button>
+          <button onClick={() => removeBlog(index)}>delete</button></p>
+
         <button onClick={() => setBlogExpanded(false)}>hide</button>
       </div>
-    );
+    )
   } else {
     return (
       <div style={blogStyle}>
@@ -37,7 +35,8 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
         <br />
         <button onClick={() => setBlogExpanded(true)}>view</button>
       </div>
-    );
+    )
   }
-};
-export default Blog;
+}
+
+export default Blog

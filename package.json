@@ -17,7 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "backend": "cd /home/Dropbox/Dropbox/0_tut/Helsinki/4/fullstackopenhelsinki-bloglist_backend/ && npm run dev"
+    "backend": "cd /home/Dropbox/Dropbox/0_tut/Helsinki/4/fullstackopenhelsinki-bloglist_backend/ && npm run dev",
+    "eslint": "eslint ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,5 +35,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "eslint-plugin-jest": "^24.0.2"
+  }
 }
