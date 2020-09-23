@@ -27,27 +27,54 @@ test('renders content with hidden details', () => {
   )
 })
 
-// test.only('clicking view button opens blog', () => {
-//   const blog = {
-//     title: 'React patterns',
-//     author: 'fsdfsdf',
-//     likes: 5
-//   }
+test('clicking view button opens blog', () => {
+  const blog = {
+    title: 'React patterns',
+    author: 'fsdfsdf',
+    likes: 5
+  }
 
-//   const mockHandler = jest.fn()
+  const mockHandler = jest.fn()
 
-//   const component = render(
-//     <Blog blog={blog} handleViewClick={mockHandler}/>
-//   )
+  const component = render(
+    <Blog blog={blog} handleViewClick={mockHandler}/>
+  )
 
-//   const button = component.getByText('view')
-//   fireEvent.click(button)
+  const button = component.getByText('view')
+  fireEvent.click(button)
 
-//     console.log(mockHandler)
+  console.log(mockHandler.mock.calls)
 
-//   expect(mockHandler.mock.calls).toHaveLength(1)
+  expect(mockHandler.mock.calls).toHaveLength(1)
 
-// })
+})
+
+test('click like twice', () => {
+
+  const blog = {
+    title: 'React patterns',
+    author: 'fsdfsdf',
+    likes: 5
+  }
+
+  const mockHandler = jest.fn()
+
+  const component = render(
+    <Blog blog={blog} addLike={mockHandler}/>
+  )
+
+  const viewButton = component.getByText('view')
+  fireEvent.click(viewButton)
+
+  const button = component.getByText('like')
+
+  fireEvent.click(button)
+  fireEvent.click(button)
+
+
+  expect(mockHandler.mock.calls).toHaveLength(2)
+
+})
 
 
 // CI=true npm test

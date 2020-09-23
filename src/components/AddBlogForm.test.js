@@ -10,8 +10,6 @@ test('<AddBlogForm /> updates parent state and calls onSubmit', () => {
     <AddBlogForm addBlog={handleSubmit} />
   )
 
-  // const title = component.getByLabelText('title')
-
   const title = component.container.querySelector('#title')
   const author = component.container.querySelector('#author')
   const url = component.container.querySelector('#url')
