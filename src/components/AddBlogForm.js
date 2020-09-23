@@ -1,53 +1,56 @@
-import React, { useState, useRef } from "react";
-import Togglable from "../components/Togglable"
+import React, { useState, useRef } from 'react'
+import Togglable from '../components/Togglable'
 
 
 const AddBlogForm = ({ addBlog }) => {
 
   const emptyBlogFormField = {
-    title: "",
-    author: "",
-    url: "",
-  };
+    title: '',
+    author: '',
+    url: '',
+  }
 
-  const [newBlog, setNewBlog] = useState(emptyBlogFormField);
+  const [newBlog, setNewBlog] = useState(emptyBlogFormField)
 
   const blogFormRef = useRef()
 
   const handleSubmit = (event) => {
     blogFormRef.current.toggleVisibility()
-    
-    event.preventDefault();
 
-    if (!newBlog) return;
+    event.preventDefault()
 
-    addBlog(newBlog.title, newBlog.author, newBlog.url);
+    if (!newBlog) return
 
-    setNewBlog(emptyBlogFormField);
-  };
+    addBlog(newBlog.title, newBlog.author, newBlog.url)
+
+    setNewBlog(emptyBlogFormField)
+  }
 
   const handleBlogFormChange = (event) => {
-    let name = event.target.name;
+    let name = event.target.name
 
-    let newBlogToBeCreated = event.target.value;
+    let newBlogToBeCreated = event.target.value
 
     setNewBlog({
       ...newBlog,
       [name]: newBlogToBeCreated,
-    });
-  };
+    })
+  }
 
   return (
-    <div>
+    <div className="formDiv">
 
       <Togglable buttonLabel='new blog' ref={blogFormRef}>
         <form onSubmit={handleSubmit}>
           <div>
-            title:
+            
+            <label htmlFor="title">title</label>
             <input
+              id="title"
               type="text"
               value={newBlog.title}
               name="title"
+              className="title"
               onChange={handleBlogFormChange}
             />
           </div>
@@ -71,9 +74,9 @@ const AddBlogForm = ({ addBlog }) => {
           </div>
           <button type="submit">create</button>
         </form>
-        </Togglable>
+      </Togglable>
     </div>
-  );
-};
+  )
+}
 
-export default AddBlogForm;
+export default AddBlogForm

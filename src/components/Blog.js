@@ -13,6 +13,10 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
     marginBottom: 5,
   }
 
+  const handleViewClick = () => {
+    setBlogExpanded(!blogExpanded)
+  }
+
   if (blogExpanded === true) {
     return (
       <div style={blogStyle} className='blog'>
@@ -25,7 +29,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
           <button onClick={() => addLike(index)}>like</button>
           <button onClick={() => removeBlog(index)}>delete</button></p>
 
-        <button onClick={() => setBlogExpanded(false)}>hide</button>
+        <button onClick={handleViewClick}>hide</button>
       </div>
     )
   } else {
@@ -33,7 +37,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
       <div style={blogStyle} className='blog'>
         {blog.title} {blog.author}
         <br />
-        <button onClick={() => setBlogExpanded(true)}>view</button>
+        <button onClick={handleViewClick}>view</button>
       </div>
     )
   }
