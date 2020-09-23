@@ -45,8 +45,10 @@ test('clicking view button opens blog', () => {
 
   console.log(mockHandler.mock.calls)
 
-  expect(mockHandler.mock.calls).toHaveLength(1)
-
+//   expect(mockHandler.mock.calls).toHaveLength(1)
+    expect(component.container).toHaveTextContent(
+    'hide'
+  )
 })
 
 test('click like twice', () => {
