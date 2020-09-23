@@ -15,6 +15,7 @@ const App = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("");
   const [user, setUser] = useState(null);
 
   const [errorMessage, setErrorMessage] = useState(null);
@@ -29,6 +30,7 @@ const App = () => {
     padding: 10,
     marginBottom: 10,
   };
+
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -49,6 +51,7 @@ const App = () => {
       const user = await loginService.login({
         username,
         password,
+        id: userId
       });
 
       window.localStorage.setItem(
@@ -60,8 +63,6 @@ const App = () => {
       setUser(user);
       setUsername("");
       setPassword("");
-      console.log(user);
-
 
     } catch (exception) {
       setMessageColor("red");
@@ -124,7 +125,21 @@ const App = () => {
         blogService.update(newBlogs[index])
       
         setBlogs(newBlogs)
+        // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
+
       }
+
+      const removeBlog = (index) => {
+        const newBlogs = [...blogs];
+
+        newBlogs.splice(index, 1);
+        
+
+        blogService.remove(blogs[index]["id"], user.id);
+
+        setBlogs(newBlogs);
+        // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
+      };
 
 
   const blogList = () => (
@@ -133,7 +148,7 @@ const App = () => {
 
       <h2>blogs</h2>
       {blogs.map((blog, index) => (
-        <Blog key={blog.id} blog={blog} addLike={addLike} index={index}/>
+        <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
       ))}
     </div>
   );

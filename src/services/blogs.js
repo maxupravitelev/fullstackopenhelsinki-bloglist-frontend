@@ -32,11 +32,14 @@ const update = async (blog) => {
   return response.data
 }
 
-const remove = async (blogId) => {
+const remove = async (blogId, userId) => {
   const config = {
-    headers: { Authorization: token },
-  }
 
+    headers: { Authorization: token },
+    data: {
+      userId
+    },
+  }
   const response = await axios.delete(baseUrl+'/'+blogId, config)
   return response.data
 }

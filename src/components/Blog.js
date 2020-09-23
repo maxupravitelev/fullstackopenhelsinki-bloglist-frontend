@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import blogService from "../services/blogs";
 
 
-const Blog = ({ blog, addLike, index }) => {
+const Blog = ({ blog, addLike, removeBlog, index }) => {
   const [blogExpanded, setBlogExpanded] = useState(false);
 
   const blogStyle = {
@@ -24,7 +24,8 @@ const Blog = ({ blog, addLike, index }) => {
         <br />
         
     <p>{blog.likes} likes
-        <button onClick={() => addLike(index)}>like</button></p>
+        <button onClick={() => addLike(index)}>like</button>
+        <button onClick={() => removeBlog(index)}>delete</button></p>
         
         <button onClick={() => setBlogExpanded(false)}>hide</button>
       </div>
