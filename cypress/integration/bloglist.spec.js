@@ -18,8 +18,8 @@ describe('Blog app', function() {
     cy.get('#password').type('sekret')
     cy.get('#login-button').click()
 
-    // cy.contains('root logged in')
-  })  
+    cy.contains('\'root\' logged in')
+  })
 
 })
 
