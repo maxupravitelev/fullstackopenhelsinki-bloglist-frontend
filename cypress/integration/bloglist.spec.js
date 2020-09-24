@@ -20,6 +20,15 @@ describe('Blog app', function() {
     cy.contains('login').click()
   })
 
+  it('user can not login with invalid credentials', function () {
+    cy.contains('login').click()
+    cy.get('#username').type('root')
+    cy.get('#password').type('asd')
+    cy.get('#login-button').click()
+
+    cy.contains('Wrong credentials')
+  })
+
   it('user can login', function () {
     cy.contains('login').click()
     cy.get('#username').type('root')
@@ -28,6 +37,8 @@ describe('Blog app', function() {
 
     cy.contains('\'root\' logged in')
   })
+
+
 
   describe('when logged in', function() {
     beforeEach(function() {
