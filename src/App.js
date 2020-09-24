@@ -71,6 +71,12 @@ const App = () => {
       setUsername('')
       setPassword('')
 
+      setMessageColor('green')
+      setErrorMessage(`'${user.username}' logged in`)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
+
     } catch (exception) {
       setMessageColor('red')
       setErrorMessage('Wrong credentials')
@@ -162,7 +168,7 @@ const App = () => {
 
   return (
     <div>
-      {/* <Notification message={errorMessage} /> */}
+      <Notification message={errorMessage} />
 
       {user === null ? (
         loginForm()
