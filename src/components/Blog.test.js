@@ -5,6 +5,7 @@ import { prettyDOM } from '@testing-library/dom'
 
 import Blog from './Blog'
 
+// exercise 5.13
 test('renders content with hidden details', () => {
   const blog = {
     title: 'React patterns',
@@ -15,18 +16,12 @@ test('renders content with hidden details', () => {
   const component = render(
     <Blog blog={blog} />
   )
-
-  //   component.debug()
-
-  //   const li = component.container.querySelector('li')
-
-  //   console.log(prettyDOM(li))
-
   expect(component.container).toHaveTextContent(
     'view'
   )
 })
 
+// exercise 5.14
 test('clicking view button opens blog', () => {
   const blog = {
     title: 'React patterns',
@@ -48,7 +43,6 @@ test('clicking view button opens blog', () => {
   const button = component.getByText('view')
   fireEvent.click(button)
 
-  //   expect(mockHandler.mock.calls).toHaveLength(1)
   expect(component.container).toHaveTextContent(
     'hide'
   )
@@ -59,6 +53,7 @@ test('clicking view button opens blog', () => {
 
 })
 
+// Exercise 
 test('click like twice', () => {
 
   const blog = {
