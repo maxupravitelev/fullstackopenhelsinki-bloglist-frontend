@@ -7,7 +7,7 @@ describe('Blog app', function() {
       password: 'sekret'
     }
     cy.request('POST', 'http://localhost:3001/api/users/', user)
-    
+
     cy.visit('http://localhost:3000')
   })
 
@@ -56,6 +56,52 @@ describe('Blog app', function() {
       cy.contains('create').click()
       cy.contains('a blog created by cypress')
     })
+
+
+  })
+
+  describe('when db is not empty', function() {
+    beforeEach(function() {
+      cy.contains('login').click()
+      cy.get('input:first').type('root')
+      cy.get('input:last').type('sekret')
+      cy.get('#login-button').click()
+
+      cy.contains('new blog').click()
+      cy.get('#title').type('a blog created by cypress')
+      cy.get('#author').type('author')
+      cy.get('#url').type('www.test.io')
+      cy.contains('create').click()
+
+    //   cy.contains('new blog').click()
+    //   cy.get('#title').type('a blog created to be removed')
+    //   cy.get('#author').type('author')
+    //   cy.get('#url').type('www.test.io')
+    //   cy.contains('create').click()
+
+    })
+
+
+    it('likes can be updated', function() {
+
+      cy.contains('view').click()
+      cy.contains('like').click()
+      cy.contains('1 likes')
+    })
+
+    it('blogs can be deleted', function() {
+
+      cy.contains('new blog').click()
+      cy.get('#title').type('a blog created to be removed')
+      cy.get('#author').type('author')
+      cy.get('#url').type('www.test.io')
+      cy.contains('create').click()
+
+      cy.contains('view').click()
+      cy.contains('delete').click()
+      cy.contains('removed')
+    })
+
   })
 
 })

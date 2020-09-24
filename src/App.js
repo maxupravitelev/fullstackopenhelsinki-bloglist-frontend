@@ -89,7 +89,7 @@ const App = () => {
 
   const addBlog = async (title, author, url) => {
 
-    const newBlog = { title, author, url }
+    const newBlog = { title, author, url, likes: 0}
 
     await blogService.create(newBlog)
 
@@ -149,6 +149,12 @@ const App = () => {
 
 
     blogService.remove(blogs[index]['id'], user.id)
+
+    setMessageColor('green')
+    setErrorMessage(`'${blogs[index]['title']}' by removed`)
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
 
     setBlogs(newBlogs)
     // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
