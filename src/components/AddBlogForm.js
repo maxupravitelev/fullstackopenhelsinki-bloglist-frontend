@@ -26,10 +26,7 @@ const AddBlogForm = ({ addBlog }) => {
     if (!newBlog) return
 
     addBlog(newBlog.title, newBlog.author, newBlog.url)
-    dispatch(setNotification(`"${newBlog.title}" added`))
-    // setTimeout(() => {
-    //   dispatch(setNotification(null))
-    // }, 2000)
+
     setNewBlog(emptyBlogFormField)
   }
 

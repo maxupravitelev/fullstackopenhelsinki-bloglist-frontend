@@ -9,6 +9,8 @@ import Togglable from './components/Togglable'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
+import { useDispatch } from 'react-redux'
+import { setNotification } from './reducers/notificationReducer'
 
 
 const App = () => {
@@ -19,18 +21,20 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
-  const [errorMessage, setErrorMessage] = useState(null)
-  const [messageColor, setMessageColor] = useState('red')
+  // const [errorMessage, setErrorMessage] = useState(null)
+  // const [messageColor, setMessageColor] = useState('red')
 
-  const notificationStyle = {
-    color: messageColor,
-    background: 'lightgrey',
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  }
+  const dispatch = useDispatch()
+
+  // const notificationStyle = {
+  //   color: messageColor,
+  //   background: 'lightgrey',
+  //   fontSize: 20,
+  //   borderStyle: 'solid',
+  //   borderRadius: 5,
+  //   padding: 10,
+  //   marginBottom: 10,
+  // }
 
 
   useEffect(() => {
@@ -73,18 +77,18 @@ const App = () => {
       setUsername('')
       setPassword('')
 
-      setMessageColor('green')
-      setErrorMessage(`'${user.username}' logged in`)
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+      // setMessageColor('green')
+      // setErrorMessage(`'${user.username}' logged in`)
+      // setTimeout(() => {
+      //   setErrorMessage(null)
+      // }, 5000)
 
     } catch (exception) {
-      setMessageColor('red')
-      setErrorMessage('Wrong credentials')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+      // setMessageColor('red')
+      // setErrorMessage('Wrong credentials')
+      // setTimeout(() => {
+      //   setErrorMessage(null)
+      // }, 5000)
     }
   }
 
@@ -97,13 +101,15 @@ const App = () => {
 
     const newBlogList = await blogService.getAll()
 
-    console.log(newBlogList)
+    // console.log(newBlogList)
 
-    setMessageColor('green')
-    setErrorMessage(`'${newBlog.title}' by '${newBlog.author}' added`)
-    setTimeout(() => {
-      setErrorMessage(null)
-    }, 5000)
+    // setMessageColor('green')
+    // setErrorMessage(`'${newBlog.title}' by '${newBlog.author}' added`)
+
+    dispatch(setNotification(`"${newBlog.title}" added`, 3))
+    // setTimeout(() => {
+    //   dispatch(setNotification(null))
+    // }, 2000)
 
     setBlogs(newBlogList)
 
@@ -118,7 +124,6 @@ const App = () => {
         <div>
           <Notification />
 
-          {/* <Notification message={errorMessage} styleMessage={notificationStyle} /> */}
           <Togglable buttonLabel='login'>
             <LoginForm
               username={username}
@@ -154,11 +159,11 @@ const App = () => {
 
     blogService.remove(blogs[index]['id'], user.id)
 
-    setMessageColor('green')
-    setErrorMessage(`'${blogs[index]['title']}' by removed`)
-    setTimeout(() => {
-      setErrorMessage(null)
-    }, 5000)
+    // setMessageColor('green')
+    // setErrorMessage(`'${blogs[index]['title']}' by removed`)
+    // setTimeout(() => {
+    //   setErrorMessage(null)
+    // }, 5000)
 
     setBlogs(newBlogs)
     // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
@@ -167,7 +172,9 @@ const App = () => {
 
   const blogList = () => (
     <div>
-      <Notification message={errorMessage} styleMessage={notificationStyle} />
+      <Notification />
+
+      {/* <Notification message={errorMessage} styleMessage={notificationStyle} /> */}
 
       <h2>blogs</h2>
       {blogs.map((blog, index) => (
@@ -178,7 +185,8 @@ const App = () => {
 
   return (
     <div>
-      <Notification message={errorMessage} />
+      <Notification />
+      {/* <Notification message={errorMessage} /> */}
 
       {user === null ? (
         loginForm()
