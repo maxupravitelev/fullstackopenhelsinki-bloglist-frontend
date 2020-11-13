@@ -63,10 +63,10 @@ const App = () => {
       setUsername('')
       setPassword('')
 
-      setNotification(`'${user.username}' logged in`, 3, 'green')
+      dispatch(setNotification(`'${user.username}' logged in`, 3, 'green'))
 
     } catch (exception) {
-      setNotification('Wrong credentials', 3, 'red')
+      dispatch(setNotification('Wrong credentials', 3, 'red'))
 
     }
   }
@@ -130,7 +130,7 @@ const App = () => {
 
     blogService.remove(blogs[index]['id'], user.id)
 
-    setNotification(`'${blogs[index]['title']}' by removed`, 3, 'green')
+    dispatch(setNotification(`${blogs[index]['title']} removed`, 3, 'green'))
 
     setBlogs(newBlogs)
     // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
