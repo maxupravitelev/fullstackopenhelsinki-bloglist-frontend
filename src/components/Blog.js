@@ -2,8 +2,13 @@
 import React, { useState } from 'react'
 // import blogService from '../services/blogs'
 
+import { useDispatch, useSelector } from 'react-redux'
+
+
 const Blog = ({ blog, addLike, removeBlog, index }) => {
   const [blogExpanded, setBlogExpanded] = useState(false)
+
+  // const dispatch = useDispatch()
 
   const blogStyle = {
     paddingTop: 10,
@@ -12,6 +17,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
     borderWidth: 1,
     marginBottom: 5,
   }
+
 
   const handleViewClick = () => {
     setBlogExpanded(!blogExpanded)

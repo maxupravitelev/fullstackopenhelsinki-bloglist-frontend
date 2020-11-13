@@ -6,11 +6,15 @@ import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 
+import Bloglist from './components/Bloglist'
+
+
 import blogService from './services/blogs'
 import loginService from './services/login'
 
 import { useDispatch } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
+import { initializeBlogs } from './reducers/blogReducer'
 
 
 const App = () => {
@@ -23,18 +27,22 @@ const App = () => {
 
   const dispatch = useDispatch()
 
+  // useEffect(() => {
+  //   const getBlogs = async () => {
+  //     let initBlogs = await blogService.getAll()
+
+  //     initBlogs.sort((b, a) => a.likes - b.likes)
+
+  //     setBlogs(initBlogs)
+  //   }
+
+  //   getBlogs()
+
+  // }, [])
+
   useEffect(() => {
-    const getBlogs = async () => {
-      let initBlogs = await blogService.getAll()
-
-      initBlogs.sort((b, a) => a.likes - b.likes)
-
-      setBlogs(initBlogs)
-    }
-
-    getBlogs()
-
-  }, [])
+    dispatch(initializeBlogs())
+  }, [dispatch])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
@@ -167,7 +175,8 @@ const App = () => {
           <AddBlogForm
             addBlog={addBlog}
           />
-          {blogList()}
+          {/* {blogList()} */}
+          <Bloglist />
         </div>
       )}
 

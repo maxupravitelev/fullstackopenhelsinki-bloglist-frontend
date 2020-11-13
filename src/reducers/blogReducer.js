@@ -6,7 +6,7 @@ const blogReducer = (state = [], action) => {
 
   switch(action.type) {
   case 'NEW_BLOG':
-    return [...state, action.data]
+    return [...state, action.data[0]]
   case 'INIT_BLOGS':
     return action.data
   case 'LIKE':
@@ -32,7 +32,7 @@ export const createBlog = content => {
   return async dispatch => {
     const newBlog = await blogService.create(content)
     dispatch({
-      type: 'NEW_ANECDOTE',
+      type: 'NEW_BLOG',
       data: newBlog
     })
   }

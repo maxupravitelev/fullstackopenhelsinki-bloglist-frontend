@@ -38,10 +38,14 @@ const AddBlogForm = ({ addBlog }) => {
       url
     }
 
-    console.log(content)
+    console.log(newBlog)
 
-    dispatch(createBlog(content))
+    // dispatch(createBlog(content))
+    dispatch(createBlog(newBlog))
+
     dispatch(setNotification(`"${content.title}" added`, 3, 'green'))
+
+    setNewBlog(emptyBlogFormField)
 
     // blogFormRef.current.toggleVisibility()
 
