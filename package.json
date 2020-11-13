@@ -11,6 +11,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.3.1",
+    "redux": "^4.0.5",
     "xvfb": "^0.4.0"
   },
   "scripts": {
@@ -18,11 +19,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "backend": "cd /home/Dropbox/Dropbox/0_tut/Helsinki/4/fullstackopenhelsinki-bloglist_backend/ && npm run dev",
+    "backend": "cd /home/max/Dropbox/0_tut/Helsinki/4/fullstackopenhelsinki-bloglist_backend/ && npm run dev",
     "eslint": "eslint .",
     "cypress:open": "cypress open",
     "test:e2e": "cypress run",
-    "backend:test": "cd /home/Dropbox/Dropbox/0_tut/Helsinki/4/fullstackopenhelsinki-bloglist_backend/ && cross-env NODE_ENV=test node index.js"
+    "backend:test": "cd /home/max/Dropbox/0_tut/Helsinki/4/fullstackopenhelsinki-bloglist_backend/ && cross-env NODE_ENV=test node index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
