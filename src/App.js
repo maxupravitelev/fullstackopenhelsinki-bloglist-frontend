@@ -116,7 +116,9 @@ const App = () => {
     return (
       <div>
         <div>
-          <Notification message={errorMessage} styleMessage={notificationStyle} />
+          <Notification />
+
+          {/* <Notification message={errorMessage} styleMessage={notificationStyle} /> */}
           <Togglable buttonLabel='login'>
             <LoginForm
               username={username}
