@@ -7,7 +7,15 @@ const Notification = () => {
 
   console.log(notification)
 
+  let notificationBackgroundColor;
+  if (!notification) {
+    notificationBackgroundColor = 'white'
+  } else {
+    notificationBackgroundColor = notification.color
+  }
+
   const style = {
+    backgroundColor: notificationBackgroundColor,
     border: 'solid',
     padding: 10,
     borderWidth: 1
@@ -16,7 +24,7 @@ const Notification = () => {
   if (notification) {
     return (
       <div style={style}>
-        {notification}
+        {notification.notification}
       </div>
     )
   } else {

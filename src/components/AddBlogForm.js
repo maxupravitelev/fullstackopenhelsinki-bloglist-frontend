@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react'
 import Togglable from '../components/Togglable'
 
-import { useDispatch } from 'react-redux'
-import { setNotification } from '../reducers/notificationReducer'
+// import { useDispatch } from 'react-redux'
+// import { setNotification } from '../reducers/notificationReducer'
 
 
 const AddBlogForm = ({ addBlog }) => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const emptyBlogFormField = {
     title: '',

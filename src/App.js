@@ -106,10 +106,7 @@ const App = () => {
     // setMessageColor('green')
     // setErrorMessage(`'${newBlog.title}' by '${newBlog.author}' added`)
 
-    dispatch(setNotification(`"${newBlog.title}" added`, 3))
-    // setTimeout(() => {
-    //   dispatch(setNotification(null))
-    // }, 2000)
+    dispatch(setNotification(`"${newBlog.title}" added`, 3, 'green'))
 
     setBlogs(newBlogList)
 
