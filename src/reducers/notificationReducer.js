@@ -26,7 +26,6 @@ export const setNotification = (notification, duration, color) => {
       notification: notificationObj
     })
 
-    
     const clearNotification = () => {
       dispatch({
         type: 'NOTIFICATION',

@@ -21,21 +21,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
-  // const [errorMessage, setErrorMessage] = useState(null)
-  // const [messageColor, setMessageColor] = useState('red')
-
   const dispatch = useDispatch()
-
-  // const notificationStyle = {
-  //   color: messageColor,
-  //   background: 'lightgrey',
-  //   fontSize: 20,
-  //   borderStyle: 'solid',
-  //   borderRadius: 5,
-  //   padding: 10,
-  //   marginBottom: 10,
-  // }
-
 
   useEffect(() => {
     const getBlogs = async () => {
@@ -77,18 +63,11 @@ const App = () => {
       setUsername('')
       setPassword('')
 
-      // setMessageColor('green')
-      // setErrorMessage(`'${user.username}' logged in`)
-      // setTimeout(() => {
-      //   setErrorMessage(null)
-      // }, 5000)
+      setNotification(`'${user.username}' logged in`, 3, 'green')
 
     } catch (exception) {
-      // setMessageColor('red')
-      // setErrorMessage('Wrong credentials')
-      // setTimeout(() => {
-      //   setErrorMessage(null)
-      // }, 5000)
+      setNotification('Wrong credentials', 3, 'red')
+
     }
   }
 
@@ -100,11 +79,6 @@ const App = () => {
     await blogService.create(newBlog)
 
     const newBlogList = await blogService.getAll()
-
-    // console.log(newBlogList)
-
-    // setMessageColor('green')
-    // setErrorMessage(`'${newBlog.title}' by '${newBlog.author}' added`)
 
     dispatch(setNotification(`"${newBlog.title}" added`, 3, 'green'))
 
@@ -156,11 +130,7 @@ const App = () => {
 
     blogService.remove(blogs[index]['id'], user.id)
 
-    // setMessageColor('green')
-    // setErrorMessage(`'${blogs[index]['title']}' by removed`)
-    // setTimeout(() => {
-    //   setErrorMessage(null)
-    // }, 5000)
+    setNotification(`'${blogs[index]['title']}' by removed`, 3, 'green')
 
     setBlogs(newBlogs)
     // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
@@ -170,8 +140,6 @@ const App = () => {
   const blogList = () => (
     <div>
       <Notification />
-
-      {/* <Notification message={errorMessage} styleMessage={notificationStyle} /> */}
 
       <h2>blogs</h2>
       {blogs.map((blog, index) => (
@@ -183,7 +151,6 @@ const App = () => {
   return (
     <div>
       <Notification />
-      {/* <Notification message={errorMessage} /> */}
 
       {user === null ? (
         loginForm()
