@@ -1,12 +1,14 @@
 import React, { useState, useRef } from 'react'
 import Togglable from '../components/Togglable'
 
-// import { useDispatch } from 'react-redux'
-// import { setNotification } from '../reducers/notificationReducer'
+import { useDispatch } from 'react-redux'
+import { setNotification } from '../reducers/notificationReducer'
+import { createBlog } from '../reducers/blogReducer'
+import blogService from '../services/blogs'
 
 
 const AddBlogForm = ({ addBlog }) => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const emptyBlogFormField = {
     title: '',
@@ -19,15 +21,37 @@ const AddBlogForm = ({ addBlog }) => {
   const blogFormRef = useRef()
 
   const handleSubmit = (event) => {
-    blogFormRef.current.toggleVisibility()
 
     event.preventDefault()
 
-    if (!newBlog) return
+    const title = event.target.title.value
+    const author = event.target.author.value
+    const url = event.target.url.value
 
-    addBlog(newBlog.title, newBlog.author, newBlog.url)
+    event.target.title.value = ''
+    event.target.author.value = ''
+    event.target.url.value = ''
 
-    setNewBlog(emptyBlogFormField)
+    const content = {
+      title,
+      author,
+      url
+    }
+
+    console.log(content)
+
+    dispatch(createBlog(content))
+    dispatch(setNotification(`"${content.title}" added`, 3, 'green'))
+
+    // blogFormRef.current.toggleVisibility()
+
+    // event.preventDefault()
+
+    // if (!newBlog) return
+
+    // addBlog(newBlog.title, newBlog.author, newBlog.url)
+
+    // setNewBlog(emptyBlogFormField)
   }
 
   const handleBlogFormChange = (event) => {
