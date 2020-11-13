@@ -23,7 +23,7 @@ const Bloglist = () => {
 
   const blogs = useSelector(state => state.blogs)
 
-    console.log(blogs)
+  console.log(blogs)
 
   const addLike = (blog) => {
     dispatch(like(blog))

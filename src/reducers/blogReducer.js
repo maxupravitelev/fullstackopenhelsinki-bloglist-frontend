@@ -6,7 +6,7 @@ const blogReducer = (state = [], action) => {
 
   switch(action.type) {
   case 'NEW_BLOG':
-    return [...state, action.data[0]]
+    return [...state, action.data]
   case 'INIT_BLOGS':
     return action.data
   case 'LIKE':
