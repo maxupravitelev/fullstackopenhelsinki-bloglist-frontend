@@ -117,32 +117,19 @@ const App = () => {
     )
   }
 
-  const addLike = (index) => {
+  // const removeBlog = (index) => {
+  //   const newBlogs = [...blogs]
 
-    const newBlogs = [...blogs]
-
-    newBlogs[index].likes = newBlogs[index].likes + 1
-
-    blogService.update(newBlogs[index])
-
-    setBlogs(newBlogs)
-    // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
-
-  }
-
-  const removeBlog = (index) => {
-    const newBlogs = [...blogs]
-
-    newBlogs.splice(index, 1)
+  //   newBlogs.splice(index, 1)
 
 
-    blogService.remove(blogs[index]['id'], user.id)
+  //   blogService.remove(blogs[index]['id'], user.id)
 
-    dispatch(setNotification(`${blogs[index]['title']} removed`, 3, 'green'))
+  //   dispatch(setNotification(`${blogs[index]['title']} removed`, 3, 'green'))
 
-    setBlogs(newBlogs)
-    // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
-  }
+  //   setBlogs(newBlogs)
+  //   // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
+  // }
 
   return (
     <div>
@@ -162,7 +149,7 @@ const App = () => {
           </p>
           <AddBlogForm />
           {/* {blogList()} */}
-          <Bloglist />
+          <Bloglist user={user}/>
         </div>
       )}
 

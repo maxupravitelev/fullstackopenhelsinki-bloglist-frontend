@@ -29,13 +29,11 @@ const update = async (blog) => {
   const config = {
     headers: { Authorization: token },
   }
-  console.log(blog)
   const response = await axios.put(baseUrl+'/'+blog.id, blog, config)
-  console.log(response)
   return response.data
 }
 
-const remove = async (blogId, userId) => {
+const remove = async (blog, userId) => {
   const config = {
 
     headers: { Authorization: token },
@@ -43,7 +41,9 @@ const remove = async (blogId, userId) => {
       userId
     },
   }
-  const response = await axios.delete(baseUrl+'/'+blogId, config)
+  console.log(blog)
+  const response = await axios.delete(baseUrl+'/'+blog.id, config)
+  console.log(response)
   return response.data
 }
 

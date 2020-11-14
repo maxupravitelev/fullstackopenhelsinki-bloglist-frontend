@@ -4,14 +4,14 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setNotification } from '../reducers/notificationReducer'
-import { like } from '../reducers/blogReducer'
+import { like, remove } from '../reducers/blogReducer'
 
 import Blog from '../components/Blog'
 
 
 
 
-const Bloglist = () => {
+const Bloglist = ({ user }) => {
 
   const dispatch = useDispatch()
 
@@ -28,8 +28,8 @@ const Bloglist = () => {
   }
 
   const removeBlog = (index) => {
-    console.log(blogs[index])
-    dispatch(like(blogs[index]))
+    console.log(user)
+    dispatch(remove(blogs[index], user.id, index))
 
     dispatch(setNotification(`you deleted '${blogs[index].content}'`, 2, 'green'))
 
