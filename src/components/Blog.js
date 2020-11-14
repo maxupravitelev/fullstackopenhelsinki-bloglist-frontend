@@ -1,17 +1,19 @@
-
 import React, { useState } from 'react'
 // import blogService from '../services/blogs'
 
 import { useDispatch, useSelector } from 'react-redux'
 
 
-const Blog = ({ blog, addLike, removeBlog, index }) => {
+const Blog = ({ blog, addLike, index, removeBlog }) => {
   const [blogExpanded, setBlogExpanded] = useState(false)
 
-  // const dispatch = useDispatch()
-
-
-
+  const blogStyle = {
+    paddingTop: 10,
+    paddingLeft: 2,
+    border: 'solid',
+    borderWidth: 1,
+    marginBottom: 5,
+  }
 
   const handleViewClick = () => {
     setBlogExpanded(!blogExpanded)
@@ -19,7 +21,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
 
   if (blogExpanded === true) {
     return (
-      <div className='blog'>
+      <div style={blogStyle} className='blog'>
         {blog.title} {blog.author}
         <br />
         {blog.url}
@@ -34,7 +36,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
     )
   } else {
     return (
-      <div className='blog'>
+      <div style={blogStyle} className='blog'>
         {blog.title} {blog.author}
         <br />
         <button onClick={handleViewClick}>view</button>
