@@ -9,6 +9,8 @@ import { like } from '../reducers/blogReducer'
 import Blog from '../components/Blog'
 
 
+
+
 const Bloglist = () => {
 
   const dispatch = useDispatch()
@@ -17,15 +19,20 @@ const Bloglist = () => {
 
   console.log(blogs)
 
-  const addLike = (blog) => {
-    dispatch(like(blog))
+  const addLike = (index) => {
+    console.log(blogs[index])
+    dispatch(like(blogs[index]))
 
-    dispatch(setNotification(`you voted '${blog.content}'`, 2, 'green'))
+    dispatch(setNotification(`you voted '${blogs[index].content}'`, 2, 'green'))
 
   }
 
-  const removeBlog = () => {
-    //
+  const removeBlog = (index) => {
+    console.log(blogs[index])
+    dispatch(like(blogs[index]))
+
+    dispatch(setNotification(`you deleted '${blogs[index].content}'`, 2, 'green'))
+
   }
 
   return (

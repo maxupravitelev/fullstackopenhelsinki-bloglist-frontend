@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const Notification = () => {
   const notification = useSelector(state => state.notification)
 
-  console.log(notification)
+  // console.log(notification)
 
   let notificationBackgroundColor
   if (!notification) {

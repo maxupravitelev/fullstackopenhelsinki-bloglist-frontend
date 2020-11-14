@@ -19,6 +19,10 @@ const Blog = ({ blog, addLike, index, removeBlog }) => {
     setBlogExpanded(!blogExpanded)
   }
 
+  // const removeBlog = () => {
+  //   //
+  // }
+
   if (blogExpanded === true) {
     return (
       <div style={blogStyle} className='blog'>
