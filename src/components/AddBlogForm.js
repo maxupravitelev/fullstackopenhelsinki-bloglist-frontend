@@ -4,10 +4,9 @@ import Togglable from '../components/Togglable'
 import { useDispatch } from 'react-redux'
 import { setNotification } from '../reducers/notificationReducer'
 import { createBlog } from '../reducers/blogReducer'
-import blogService from '../services/blogs'
 
 
-const AddBlogForm = ({ addBlog }) => {
+const AddBlogForm = () => {
   const dispatch = useDispatch()
 
   const emptyBlogFormField = {
@@ -38,24 +37,12 @@ const AddBlogForm = ({ addBlog }) => {
       url
     }
 
-    console.log(newBlog)
-
-    // dispatch(createBlog(content))
     dispatch(createBlog(newBlog))
 
     dispatch(setNotification(`"${content.title}" added`, 3, 'green'))
 
     setNewBlog(emptyBlogFormField)
 
-    // blogFormRef.current.toggleVisibility()
-
-    // event.preventDefault()
-
-    // if (!newBlog) return
-
-    // addBlog(newBlog.title, newBlog.author, newBlog.url)
-
-    // setNewBlog(emptyBlogFormField)
   }
 
   const handleBlogFormChange = (event) => {

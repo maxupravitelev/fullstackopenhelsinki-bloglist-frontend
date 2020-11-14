@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 // import blogService from '../services/blogs'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,8 +7,6 @@ import { setNotification } from '../reducers/notificationReducer'
 import { like, remove } from '../reducers/blogReducer'
 
 import Blog from '../components/Blog'
-
-
 
 
 const Bloglist = ({ user }) => {

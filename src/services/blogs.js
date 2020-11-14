@@ -41,9 +41,9 @@ const remove = async (blog, userId) => {
       userId
     },
   }
-  console.log(blog)
+
   const response = await axios.delete(baseUrl+'/'+blog.id, config)
-  console.log(response)
+
   return response.data
 }
 

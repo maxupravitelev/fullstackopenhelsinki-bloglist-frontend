@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 // import blogService from '../services/blogs'
 
-import { useDispatch, useSelector } from 'react-redux'
-
 
 const Blog = ({ blog, addLike, index, removeBlog }) => {
   const [blogExpanded, setBlogExpanded] = useState(false)
@@ -18,10 +16,6 @@ const Blog = ({ blog, addLike, index, removeBlog }) => {
   const handleViewClick = () => {
     setBlogExpanded(!blogExpanded)
   }
-
-  // const removeBlog = () => {
-  //   //
-  // }
 
   if (blogExpanded === true) {
     return (

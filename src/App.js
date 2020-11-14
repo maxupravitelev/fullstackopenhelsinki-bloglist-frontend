@@ -19,26 +19,11 @@ import { initializeBlogs } from './reducers/blogReducer'
 
 const App = () => {
 
-  const [blogs, setBlogs] = useState([])
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   const getBlogs = async () => {
-  //     let initBlogs = await blogService.getAll()
-
-  //     initBlogs.sort((b, a) => a.likes - b.likes)
-
-  //     setBlogs(initBlogs)
-  //   }
-
-  //   getBlogs()
-
-  // }, [])
 
   useEffect(() => {
     dispatch(initializeBlogs())
