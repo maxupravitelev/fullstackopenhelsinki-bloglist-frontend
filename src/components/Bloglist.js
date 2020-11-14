@@ -23,15 +23,15 @@ const Bloglist = ({ user }) => {
     console.log(blogs[index])
     dispatch(like(blogs[index]))
 
-    dispatch(setNotification(`you voted '${blogs[index].content}'`, 2, 'green'))
+    dispatch(setNotification(`you voted '${blogs[index].title}'`, 2, 'green'))
 
   }
 
   const removeBlog = (index) => {
     console.log(user)
-    dispatch(remove(blogs[index], user.id, index))
 
-    dispatch(setNotification(`you deleted '${blogs[index].content}'`, 2, 'green'))
+    dispatch(setNotification(`you deleted ${blogs[index].title}`, 2, 'green'))
+    dispatch(remove(blogs[index], user.id, index))
 
   }
 
