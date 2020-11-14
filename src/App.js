@@ -80,19 +80,19 @@ const App = () => {
   }
 
 
-  const addBlog = async (title, author, url) => {
+  // const addBlog = async (title, author, url) => {
 
-    const newBlog = { title, author, url, likes: 0}
+  //   const newBlog = { title, author, url, likes: 0}
 
-    await blogService.create(newBlog)
+  //   await blogService.create(newBlog)
 
-    const newBlogList = await blogService.getAll()
+  //   const newBlogList = await blogService.getAll()
 
-    dispatch(setNotification(`"${newBlog.title}" added`, 3, 'green'))
+  //   dispatch(setNotification(`"${newBlog.title}" added`, 3, 'green'))
 
-    setBlogs(newBlogList)
+  //   setBlogs(newBlogList)
 
-  }
+  // }
 
   const loginForm = () => {
     // const hideWhenVisible = { display: loginVisible ? 'none' : '' }
@@ -144,18 +144,6 @@ const App = () => {
     // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
   }
 
-
-  const blogList = () => (
-    <div>
-      <Notification />
-
-      <h2>blogs</h2>
-      {blogs.map((blog, index) => (
-        <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
-      ))}
-    </div>
-  )
-
   return (
     <div>
       <Notification />
@@ -172,9 +160,7 @@ const App = () => {
               setUser(null)
             }}>Log out</button>
           </p>
-          <AddBlogForm
-            addBlog={addBlog}
-          />
+          <AddBlogForm />
           {/* {blogList()} */}
           <Bloglist />
         </div>

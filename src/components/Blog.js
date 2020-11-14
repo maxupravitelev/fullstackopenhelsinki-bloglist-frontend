@@ -10,13 +10,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
 
   // const dispatch = useDispatch()
 
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5,
-  }
+
 
 
   const handleViewClick = () => {
@@ -25,7 +19,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
 
   if (blogExpanded === true) {
     return (
-      <div style={blogStyle} className='blog'>
+      <div className='blog'>
         {blog.title} {blog.author}
         <br />
         {blog.url}
@@ -40,7 +34,7 @@ const Blog = ({ blog, addLike, removeBlog, index }) => {
     )
   } else {
     return (
-      <div style={blogStyle} className='blog'>
+      <div className='blog'>
         {blog.title} {blog.author}
         <br />
         <button onClick={handleViewClick}>view</button>
