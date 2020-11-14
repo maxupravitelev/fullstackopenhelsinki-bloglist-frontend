@@ -51,7 +51,7 @@ const App = () => {
       setUser(user)
       blogService.setToken(user.token)
     }
-  }, []) // "The empty array as the parameter of the effect ensures that the effect is executed only when the component is rendered for the first time."
+  }, [])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -80,20 +80,6 @@ const App = () => {
   }
 
 
-  // const addBlog = async (title, author, url) => {
-
-  //   const newBlog = { title, author, url, likes: 0}
-
-  //   await blogService.create(newBlog)
-
-  //   const newBlogList = await blogService.getAll()
-
-  //   dispatch(setNotification(`"${newBlog.title}" added`, 3, 'green'))
-
-  //   setBlogs(newBlogList)
-
-  // }
-
   const loginForm = () => {
     // const hideWhenVisible = { display: loginVisible ? 'none' : '' }
     // const showWhenVisible = { display: loginVisible ? '' : 'none' }
@@ -116,20 +102,6 @@ const App = () => {
       </div>
     )
   }
-
-  // const removeBlog = (index) => {
-  //   const newBlogs = [...blogs]
-
-  //   newBlogs.splice(index, 1)
-
-
-  //   blogService.remove(blogs[index]['id'], user.id)
-
-  //   dispatch(setNotification(`${blogs[index]['title']} removed`, 3, 'green'))
-
-  //   setBlogs(newBlogs)
-  //   // Source for handling re-rendering of compontent after removal: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
-  // }
 
   return (
     <div>

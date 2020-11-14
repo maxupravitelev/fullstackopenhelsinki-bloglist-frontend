@@ -15,7 +15,9 @@ const Bloglist = ({ user }) => {
 
   const dispatch = useDispatch()
 
-  const blogs = useSelector(state => state.blogs)
+  let blogs = useSelector(state => state.blogs)
+
+  blogs.sort((b, a) => a.likes - b.likes)
 
   console.log(blogs)
 
