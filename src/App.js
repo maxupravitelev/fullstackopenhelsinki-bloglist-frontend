@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 import AddBlogForm from './components/AddBlogForm'
-import Blog from './components/Blog'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
-
 import Bloglist from './components/Bloglist'
 
 
