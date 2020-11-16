@@ -1,8 +1,8 @@
 import blogService from '../services/blogs'
 
 const blogReducer = (state = [], action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
+  // console.log('state now: ', state)
+  // console.log('action', action)
 
   switch(action.type) {
   case 'NEW_BLOG':

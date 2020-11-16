@@ -17,8 +17,6 @@ const Bloglist = ({ user }) => {
 
   blogs.sort((b, a) => a.likes - b.likes)
 
-  console.log(blogs)
-
   const addLike = (index) => {
     console.log(blogs[index])
     dispatch(like(blogs[index]))

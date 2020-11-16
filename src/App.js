@@ -10,9 +10,11 @@ import Bloglist from './components/Bloglist'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
 import { initializeBlogs } from './reducers/blogReducer'
+
+import { loginUser } from './reducers/userReducer'
 
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   const dispatch = useDispatch()
+
+  // const userR = useSelector(state => state.user)
 
   useEffect(() => {
     dispatch(initializeBlogs())
@@ -39,10 +43,10 @@ const App = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      const user = await loginService.login({
+      let user = dispatch(loginUser({
         username,
         password,
-      })
+      }))
 
       window.localStorage.setItem(
         'loggedBlogAppUser', JSON.stringify(user)
@@ -97,13 +101,12 @@ const App = () => {
           <p>
             {/* {user.username} logged-in */}
             <button onClick={() => {
-              window.localStorage.removeItem('loggedNoteappUser')
+              window.localStorage.removeItem('loggedBlogAppUser')
               window.localStorage.clear()
               setUser(null)
             }}>Log out</button>
           </p>
           <AddBlogForm />
-          {/* {blogList()} */}
           <Bloglist user={user}/>
         </div>
       )}
