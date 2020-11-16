@@ -10,7 +10,7 @@ const userReducer = (state = [], action) => {
   case 'PASSWORD':
     return action.password
   case 'LOGIN':
-    return action.login
+    return action.data
   default:
     return state
   }
