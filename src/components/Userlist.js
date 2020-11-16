@@ -7,6 +7,8 @@ import {
     Switch, Route, Link
   } from "react-router-dom"
 
+import User from '../components/User'
+
 const Userlist = ( ) => {
 
   let users = useSelector(state => state.user)
@@ -32,7 +34,7 @@ const Userlist = ( ) => {
           ))}
         </tbody>
       </table>
-
+            <User />
     </div>
 
   )
