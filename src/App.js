@@ -5,16 +5,20 @@ import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 import Bloglist from './components/Bloglist'
+import Userlist from './components/Userlist'
+
 
 
 import blogService from './services/blogs'
 import loginService from './services/login'
+
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
 import { initializeBlogs } from './reducers/blogReducer'
 
 import { loginUser } from './reducers/userReducer'
+import { getAllUsers } from './reducers/userReducer'
 
 
 const App = () => {
@@ -29,6 +33,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeBlogs())
+    dispatch(getAllUsers())
   }, [dispatch])
 
   useEffect(() => {
@@ -108,6 +113,7 @@ const App = () => {
           </p>
           <AddBlogForm />
           <Bloglist user={user}/>
+          <Userlist />
         </div>
       )}
 

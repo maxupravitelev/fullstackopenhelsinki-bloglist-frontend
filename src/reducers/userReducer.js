@@ -1,4 +1,5 @@
 import loginService from '../services/login'
+import userService from '../services/users'
 
 const userReducer = (state = [], action) => {
   console.log(state)
@@ -11,10 +12,24 @@ const userReducer = (state = [], action) => {
     return action.password
   case 'LOGIN':
     return action.data
+  case 'ALL_USERS':
+    return action.data
   default:
     return state
   }
 }
+
+export const getAllUsers = () => {
+  return async dispatch => {
+    const allUsers = await userService.getAll()
+    console.log(allUsers)
+    dispatch({
+      type: 'ALL_USERS',
+      data: allUsers
+    })
+  }
+}
+
 
 export const loginUser = (credentials) => {
   return async dispatch => {
