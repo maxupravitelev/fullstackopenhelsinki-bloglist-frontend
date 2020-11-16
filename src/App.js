@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
+import {
+  BrowserRouter as Router,
+  Switch, Route, Link
+} from 'react-router-dom'
+
 import AddBlogForm from './components/AddBlogForm'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
@@ -96,29 +101,31 @@ const App = () => {
   }
 
   return (
-    <div>
-      <Notification />
+    <Router>
+      <div>
+        <Notification />
 
-      {user === null ? (
-        loginForm()
-      ) : (
-        <div>
-          <p>
-            {/* {user.username} logged-in */}
-            <button onClick={() => {
-              window.localStorage.removeItem('loggedBlogAppUser')
-              window.localStorage.clear()
-              setUser(null)
-            }}>Log out</button>
-          </p>
-          <AddBlogForm />
-          <Bloglist user={user}/>
-          <Userlist />
-        </div>
-      )}
+        {user === null ? (
+          loginForm()
+        ) : (
+          <div>
+            <p>
+              {/* {user.username} logged-in */}
+              <button onClick={() => {
+                window.localStorage.removeItem('loggedBlogAppUser')
+                window.localStorage.clear()
+                setUser(null)
+              }}>Log out</button>
+            </p>
+            <AddBlogForm />
+            <Bloglist user={user}/>
+            <Userlist />
+          </div>
+        )}
 
-      {/* <Footer /> */}
-    </div>
+        {/* <Footer /> */}
+      </div>
+    </Router>
   )
 }
 

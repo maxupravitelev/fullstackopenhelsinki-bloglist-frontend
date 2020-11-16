@@ -2,6 +2,10 @@ import React, { useReducer, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import {
+    BrowserRouter as Router,
+    Switch, Route, Link
+  } from "react-router-dom"
 
 const Userlist = ( ) => {
 
@@ -21,7 +25,7 @@ const Userlist = ( ) => {
         <tbody>
           {users.map((user, index) => (
             <tr key={index}>
-              <td key={user.username}>{user.username}</td>
+              <td key={user.username}><Link to={`/users/${user._id}`}>{user.username}</Link></td>
               <td key={user.username + 'a'}>{user.blogs.length}</td>
             </tr>
 
