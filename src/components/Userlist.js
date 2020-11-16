@@ -18,12 +18,15 @@ const Userlist = ( ) => {
           <th></th>
           <th>blogs created</th>
         </tr>
-        {users.map((user, index) => (
-          <tr key={index}>
-            <td key={user.username}>{user.username}</td>
-            {/* <td key={user.username + 'a'}>{user.articles}</td> */}
-          </tr>
-        ))}
+        <tbody>
+          {users.map((user, index) => (
+            <tr key={index}>
+              <td key={user.username}>{user.username}</td>
+              <td key={user.username + 'a'}>{user.blogs.length}</td>
+            </tr>
+
+          ))}
+        </tbody>
       </table>
 
     </div>
