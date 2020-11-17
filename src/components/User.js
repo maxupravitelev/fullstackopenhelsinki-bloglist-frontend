@@ -9,7 +9,7 @@ import {
 
 const User = ( ) => {
   const id = useParams().id
-  let users = useSelector(state => state.user)
+  let users = useSelector(state => state.users)
   const user = users.find(user => user._id === id)
 
 //   console.log(id)
