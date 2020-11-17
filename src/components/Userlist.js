@@ -3,9 +3,9 @@ import React, { useReducer, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
-    BrowserRouter as Router,
-    Switch, Route, Link
-  } from "react-router-dom"
+  BrowserRouter as Router,
+  Switch, Route, Link
+} from 'react-router-dom'
 
 import User from '../components/User'
 
@@ -20,10 +20,12 @@ const Userlist = ( ) => {
     <div>
       <h2>Users</h2>
       <table>
-        <tr>
-          <th></th>
-          <th>blogs created</th>
-        </tr>
+        <thead>
+          <tr>
+            <th></th>
+            <th>blogs created</th>
+          </tr>
+        </thead>
         <tbody>
           {users.map((user, index) => (
             <tr key={index}>
@@ -34,7 +36,7 @@ const Userlist = ( ) => {
           ))}
         </tbody>
       </table>
-            <User />
+      <User />
     </div>
 
   )
