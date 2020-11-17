@@ -11,11 +11,12 @@ import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 import Bloglist from './components/Bloglist'
 import Userlist from './components/Userlist'
-
+import Menu from './components/Menu'
 
 
 import blogService from './services/blogs'
 import loginService from './services/login'
+
 
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -102,6 +103,7 @@ const App = () => {
 
   return (
     <Router>
+      <Menu />
       <div>
         <Notification />
 
@@ -117,9 +119,15 @@ const App = () => {
                 setUser(null)
               }}>Log out</button>
             </p>
-            <AddBlogForm />
-            <Bloglist user={user}/>
-            <Userlist />
+            <Switch>
+              <Route path="/blogs">
+                <AddBlogForm />
+                <Bloglist user={user}/>
+              </Route>
+              <Route path="/users">
+                <Userlist />
+              </Route>
+            </Switch>
           </div>
         )}
 
