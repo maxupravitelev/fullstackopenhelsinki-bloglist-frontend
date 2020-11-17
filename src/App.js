@@ -24,7 +24,7 @@ import { setNotification } from './reducers/notificationReducer'
 import { initializeBlogs } from './reducers/blogReducer'
 
 import { loginUser } from './reducers/userReducer'
-import { getAllUsers } from './reducers/userReducer'
+import { getAllUsers } from './reducers/usersReducer'
 
 
 const App = () => {
@@ -34,7 +34,7 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   const dispatch = useDispatch()
-
+  console.log(user)
   // const userR = useSelector(state => state.user)
 
   useEffect(() => {
@@ -54,21 +54,21 @@ const App = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      let user = dispatch(loginUser({
+      let userInStore = dispatch(loginUser({
         username,
         password,
       }))
-
+      console.log(userInStore)
       window.localStorage.setItem(
-        'loggedBlogAppUser', JSON.stringify(user)
+        'loggedBlogAppUser', JSON.stringify(userInStore)
       )
 
-      blogService.setToken(user.token)
+      blogService.setToken(userInStore.token)
 
-      setUser(user)
+      setUser(userInStore)
       setUsername('')
       setPassword('')
-
+      console.log(user)
       dispatch(setNotification(`'${user.username}' logged in`, 3, 'green'))
 
     } catch (exception) {
@@ -103,7 +103,7 @@ const App = () => {
 
   return (
     <Router>
-      <Menu />
+      
       <div>
         <Notification />
 
@@ -112,13 +112,15 @@ const App = () => {
         ) : (
           <div>
             <p>
-              {/* {user.username} logged-in */}
+              {username} logged in
+              <br />
               <button onClick={() => {
                 window.localStorage.removeItem('loggedBlogAppUser')
                 window.localStorage.clear()
                 setUser(null)
               }}>Log out</button>
             </p>
+            <Menu />
             <Switch>
               <Route path="/blogs">
                 <AddBlogForm />

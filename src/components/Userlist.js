@@ -11,8 +11,9 @@ import User from '../components/User'
 
 const Userlist = ( ) => {
 
-  let users = useSelector(state => state.user)
-//   console.log(users)
+  let users = useSelector(state => {
+    console.log(state)
+    return state.users})
 
 
   return (
