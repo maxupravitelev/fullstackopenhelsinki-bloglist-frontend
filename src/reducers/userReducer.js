@@ -2,8 +2,8 @@ import loginService from '../services/login'
 import userService from '../services/users'
 
 const userReducer = (state = [], action) => {
-  console.log(state)
-  console.log(action)
+  // console.log(state)
+  // console.log(action)
 
   switch (action.type) {
   case 'USERNAME':
@@ -22,7 +22,7 @@ const userReducer = (state = [], action) => {
 export const getAllUsers = () => {
   return async dispatch => {
     const allUsers = await userService.getAll()
-    console.log(allUsers)
+    // console.log(allUsers)
     dispatch({
       type: 'ALL_USERS',
       data: allUsers

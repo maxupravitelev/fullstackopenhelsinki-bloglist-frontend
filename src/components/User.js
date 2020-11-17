@@ -10,30 +10,25 @@ import {
 const User = ( ) => {
   const id = useParams().id
   let users = useSelector(state => state.user)
-  const user = users.find(user => user.id === id)
+  const user = users.find(user => user._id === id)
+
+//   console.log(id)
+//   console.log(user)
+//   console.log(users)
 
   if (!user) {
     return null
   }
 
   return (
-    <Switch>
-    <Route path="/users/:id">
     <div>
-
       <h2>{user.username}</h2>
-
-          
-          {user.blogs.map((user) => (
-            <li key={user.blogs.title + user.blogs.username}>
-              {user.blogs.title}
-            </li>
-
-          ))}
-
+      {user.blogs.map((blog) => (
+        <li key={blog.title + blog.author}>
+          {blog.title}
+        </li>
+      ))}
     </div>
-    </Route>
-    </Switch>
 
   )
 }

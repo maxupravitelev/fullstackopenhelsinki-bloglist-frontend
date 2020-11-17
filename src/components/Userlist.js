@@ -12,7 +12,7 @@ import User from '../components/User'
 const Userlist = ( ) => {
 
   let users = useSelector(state => state.user)
-  console.log(users)
+//   console.log(users)
 
 
   return (
@@ -36,7 +36,9 @@ const Userlist = ( ) => {
           ))}
         </tbody>
       </table>
-      <User />
+      <Route path='/users/:id'>
+        <User />
+      </Route>
     </div>
 
   )
