@@ -1,5 +1,4 @@
 import loginService from '../services/login'
-import userService from '../services/users'
 
 const userReducer = (state = [], action) => {
   // console.log(state)
@@ -33,7 +32,9 @@ const userReducer = (state = [], action) => {
 
 export const loginUser = (credentials) => {
   return async dispatch => {
+    console.log(credentials)
     const user = await loginService.login(credentials)
+    console.log(user)
     dispatch({
       type: 'LOGIN',
       data: user

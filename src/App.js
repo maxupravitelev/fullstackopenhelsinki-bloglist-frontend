@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import {
   BrowserRouter as Router,
-  Switch, Route, Link
+  Switch, Route
 } from 'react-router-dom'
 
 import AddBlogForm from './components/AddBlogForm'
@@ -15,7 +15,6 @@ import Menu from './components/Menu'
 
 
 import blogService from './services/blogs'
-import loginService from './services/login'
 
 
 
@@ -34,7 +33,7 @@ const App = () => {
   const [user, setUser] = useState(null)
 
   const dispatch = useDispatch()
-  console.log(user)
+  // console.log(user)
   // const userR = useSelector(state => state.user)
 
   useEffect(() => {
@@ -42,6 +41,8 @@ const App = () => {
     dispatch(getAllUsers())
   }, [dispatch])
 
+
+  // check if user is storred locally
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
@@ -51,25 +52,53 @@ const App = () => {
     }
   }, [])
 
+  let userFromStore = useSelector(state => {console.log(state); return state.user})
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      'loggedBlogAppUser', JSON.stringify(userFromStore)
+    )
+
+    blogService.setToken(userFromStore.token)
+
+    setUser(userFromStore)
+  }, [userFromStore])
+
+  // if (userFromStore.length !== 0) {
+  //   console.log('test')
+  //   console.log(userFromStore)
+
+  //   window.localStorage.setItem(
+  //     'loggedBlogAppUser', JSON.stringify(userFromStore)
+  //   )
+
+  //   blogService.setToken(userFromStore.token)
+
+  //   // setUser(userFromStore)
+  // }
+
   const handleLogin = async (event) => {
     event.preventDefault()
+    
+
     try {
-      let userInStore = dispatch(loginUser({
+      // let userInStore = dispatch(loginUser({
+      //   username,
+      //   password,
+      // }))
+      // console.log(userInStore)
+
+      dispatch(loginUser({
         username,
         password,
       }))
-      console.log(userInStore)
-      window.localStorage.setItem(
-        'loggedBlogAppUser', JSON.stringify(userInStore)
-      )
+      // console.log(userFromStore)
+      
 
-      blogService.setToken(userInStore.token)
-
-      setUser(userInStore)
-      setUsername('')
-      setPassword('')
-      console.log(user)
-      dispatch(setNotification(`'${user.username}' logged in`, 3, 'green'))
+      // setUsername('')
+      // setPassword('')
+      // console.log(user)
+      dispatch(setNotification(`'${username}' logged in`, 3, 'green'))
 
     } catch (exception) {
       dispatch(setNotification('Wrong credentials', 3, 'red'))
@@ -91,7 +120,7 @@ const App = () => {
             <LoginForm
               username={username}
               password={password}
-              handleUsernameChange={({ target }) => setUsername(target.value)}
+              handleUsernameChange={({ target }) => {setUsername(target.value)}}
               handlePasswordChange={({ target }) => setPassword(target.value)}
               handleLogin={handleLogin}
             />

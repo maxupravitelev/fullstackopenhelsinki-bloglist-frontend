@@ -1,19 +1,16 @@
-import React, { useReducer, useEffect } from 'react'
+import React from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import {
-  BrowserRouter as Router,
-  Switch, Route, Link
+  Route, Link
 } from 'react-router-dom'
 
 import User from '../components/User'
 
 const Userlist = ( ) => {
 
-  let users = useSelector(state => {
-    console.log(state)
-    return state.users})
+  let users = useSelector(state => state.users)
 
 
   return (
