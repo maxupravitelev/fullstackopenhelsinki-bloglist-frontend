@@ -15,6 +15,14 @@ import {
 
 const Bloglist = ({ user }) => {
 
+  const blogStyle = {
+    paddingTop: 10,
+    paddingLeft: 2,
+    border: 'solid',
+    borderWidth: 1,
+    marginBottom: 5,
+  }
+  
   const dispatch = useDispatch()
 
   let blogs = useSelector(state => state.blogs)
@@ -42,7 +50,7 @@ const Bloglist = ({ user }) => {
     <div>
       <h2>blogs</h2>
       {blogs.map((blog, index) => (
-        <p><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></p>
+        <p key={blog.id} style={blogStyle}><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></p>
         // <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
       ))}
 
