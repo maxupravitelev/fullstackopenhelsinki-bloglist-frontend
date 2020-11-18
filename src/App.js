@@ -117,15 +117,7 @@ const App = () => {
           loginForm()
         ) : (
           <div>
-            <p>
-              {username} logged in
-              <br />
-              <button onClick={() => {
-                window.localStorage.removeItem('loggedBlogAppUser')
-                window.localStorage.clear()
-                setUser(null)
-              }}>Log out</button>
-            </p>
+
             <Menu />
             <Switch>
               <Route path='/blogs/:id'>

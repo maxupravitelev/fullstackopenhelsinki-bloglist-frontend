@@ -58,6 +58,7 @@ const AddBlogForm = () => {
 
   return (
     <div className="formDiv">
+      <h2>blogs</h2>
 
       <Togglable buttonLabel='new blog' ref={blogFormRef}>
         <form onSubmit={handleSubmit}>
