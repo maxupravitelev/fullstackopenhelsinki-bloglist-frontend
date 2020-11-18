@@ -1,19 +1,14 @@
 import React from 'react'
 // import blogService from '../services/blogs'
 
-import { useDispatch, useSelector } from 'react-redux'
-
-import { setNotification } from '../reducers/notificationReducer'
-import { like, remove } from '../reducers/blogReducer'
-
-import Blog from '../components/Blog'
+import { useSelector } from 'react-redux'
 
 import {
-  Route, Link
+  Link
 } from 'react-router-dom'
 
 
-const Bloglist = ({ user }) => {
+const Bloglist = () => {
 
   const blogStyle = {
     paddingTop: 10,
@@ -22,23 +17,17 @@ const Bloglist = ({ user }) => {
     borderWidth: 1,
     marginBottom: 5,
   }
-  
-  const dispatch = useDispatch()
 
   let blogs = useSelector(state => state.blogs)
 
   blogs.sort((b, a) => a.likes - b.likes)
 
-
-
-
   return (
 
     <div>
       <h2>blogs</h2>
-      {blogs.map((blog, index) => (
+      {blogs.map((blog) => (
         <p key={blog.id} style={blogStyle}><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></p>
-        // <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
       ))}
 
     </div>

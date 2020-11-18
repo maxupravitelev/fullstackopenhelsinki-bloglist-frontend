@@ -109,7 +109,7 @@ const App = () => {
 
   return (
     <Router>
-      
+
       <div>
         <Notification />
 
@@ -128,12 +128,12 @@ const App = () => {
             </p>
             <Menu />
             <Switch>
-            <Route path='/blogs/:id'>
+              <Route path='/blogs/:id'>
                 <Blog />
               </Route>
               <Route path="/blogs">
                 <AddBlogForm />
-                <Bloglist user={user}/>
+                <Bloglist />
               </Route>
 
               <Route path="/users">
