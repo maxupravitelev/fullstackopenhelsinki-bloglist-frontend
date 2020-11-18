@@ -5,18 +5,22 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 const Menu = ({ setUser }) => {
-  const padding = {
+  const linkStyle = {
     paddingRight: 5
+  }
+
+  const menuStyle = {
+    backgroundColor: 'lightgray'
   }
 
   const user = useSelector(state => state.user)
   const username = user.username
 
   return (
-    <div>
+    <div style={menuStyle}>
       {/* <Link style={padding} to="/">home</Link> */}
-      <Link style={padding} to="/blogs">blogs</Link>
-      <Link style={padding} to="/users">users</Link>
+      <Link style={linkStyle} to="/blogs">blogs</Link>
+      <Link style={linkStyle} to="/users">users</Link>
       
               {username} logged in
               
