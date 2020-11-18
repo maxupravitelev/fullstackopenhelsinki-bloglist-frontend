@@ -45,9 +45,7 @@ const Bloglist = ({ user }) => {
         <p><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></p>
         // <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
       ))}
-        <Route path='/blogs/:id'>
-          <Blog />
-      </Route>
+
     </div>
 
   )

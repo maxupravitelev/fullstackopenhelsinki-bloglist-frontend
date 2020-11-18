@@ -12,6 +12,7 @@ import Togglable from './components/Togglable'
 import Bloglist from './components/Bloglist'
 import Userlist from './components/Userlist'
 import Menu from './components/Menu'
+import Blog from './components/Blog'
 
 
 import blogService from './services/blogs'
@@ -127,10 +128,14 @@ const App = () => {
             </p>
             <Menu />
             <Switch>
+            <Route path='/blogs/:id'>
+                <Blog />
+              </Route>
               <Route path="/blogs">
                 <AddBlogForm />
                 <Bloglist user={user}/>
               </Route>
+
               <Route path="/users">
                 <Userlist />
               </Route>
