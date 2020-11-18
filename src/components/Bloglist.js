@@ -8,6 +8,10 @@ import { like, remove } from '../reducers/blogReducer'
 
 import Blog from '../components/Blog'
 
+import {
+  Route, Link
+} from 'react-router-dom'
+
 
 const Bloglist = ({ user }) => {
 
@@ -38,12 +42,12 @@ const Bloglist = ({ user }) => {
     <div>
       <h2>blogs</h2>
       {blogs.map((blog, index) => (
-        // <Link to={`/users/${user._id}`}></Link>
-        <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
+        <p><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></p>
+        // <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
       ))}
-        {/* <Route path='/blogs/:id'>
+        <Route path='/blogs/:id'>
           <Blog />
-      </Route> */}
+      </Route>
     </div>
 
   )

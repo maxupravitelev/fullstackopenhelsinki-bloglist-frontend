@@ -48,7 +48,7 @@ const Blog = ({ addLike, index, removeBlog }) => {
 
   const id = useParams().id
   let blogs = useSelector(state => state.blogs)
-  const blog = blogs.find(blog => blog._id === id)
+  const blog = blogs.find(blog => blog.id === id)
 
   // if (!user) {
   //   return null
