@@ -2,6 +2,8 @@ import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useHistory } from 'react-router-dom'
+
 import {
   useParams
 } from 'react-router-dom'
@@ -12,6 +14,8 @@ import { like, remove } from '../reducers/blogReducer'
 const Blog = () => {
   // const [blogExpanded, setBlogExpanded] = useState(false)
   const dispatch = useDispatch()
+
+  const history = useHistory()
 
 
   // const handleViewClick = () => {
@@ -44,7 +48,7 @@ const Blog = () => {
   // }
 
   const id = useParams().id
-  
+
   let blogs = useSelector(state => state.blogs)
 
   const blog = blogs.find(blog => blog.id === id)
@@ -66,13 +70,15 @@ const Blog = () => {
     dispatch(setNotification(`you deleted ${blogs[index].title}`, 2, 'green'))
     dispatch(remove(blogs[index], user.id, index))
 
+    history.push('/blogs')
+
   }
 
   return (
     <div>
       <h2>{blog.title}</h2>
       <p />
-      
+
       {blog.likes} <button onClick={() => addLike()}>like</button>
       <p />
       Added by {blog.lauthor}
