@@ -42,7 +42,7 @@ const App = () => {
   }, [dispatch])
 
 
-  // check if user is storred locally
+  // check if user is stored locally
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
@@ -52,6 +52,7 @@ const App = () => {
     }
   }, [])
 
+  // once user data is dispatched to redux store, handle login
   let userFromStore = useSelector(state => {console.log(state); return state.user})
 
   useEffect(() => {
@@ -64,40 +65,15 @@ const App = () => {
     setUser(userFromStore)
   }, [userFromStore])
 
-  // if (userFromStore.length !== 0) {
-  //   console.log('test')
-  //   console.log(userFromStore)
-
-  //   window.localStorage.setItem(
-  //     'loggedBlogAppUser', JSON.stringify(userFromStore)
-  //   )
-
-  //   blogService.setToken(userFromStore.token)
-
-  //   // setUser(userFromStore)
-  // }
-
   const handleLogin = async (event) => {
     event.preventDefault()
-    
 
     try {
-      // let userInStore = dispatch(loginUser({
-      //   username,
-      //   password,
-      // }))
-      // console.log(userInStore)
-
       dispatch(loginUser({
         username,
         password,
       }))
-      // console.log(userFromStore)
-      
 
-      // setUsername('')
-      // setPassword('')
-      // console.log(user)
       dispatch(setNotification(`'${username}' logged in`, 3, 'green'))
 
     } catch (exception) {

@@ -11,10 +11,6 @@ const User = ( ) => {
   let users = useSelector(state => state.users)
   const user = users.find(user => user._id === id)
 
-//   console.log(id)
-//   console.log(user)
-//   console.log(users)
-
   if (!user) {
     return null
   }

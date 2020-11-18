@@ -38,8 +38,12 @@ const Bloglist = ({ user }) => {
     <div>
       <h2>blogs</h2>
       {blogs.map((blog, index) => (
+        // <Link to={`/users/${user._id}`}></Link>
         <Blog key={blog.id} blog={blog} addLike={addLike} index={index} removeBlog={removeBlog}/>
       ))}
+        {/* <Route path='/blogs/:id'>
+          <Blog />
+      </Route> */}
     </div>
 
   )
