@@ -1,14 +1,17 @@
 import React from 'react'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   useParams
 } from 'react-router-dom'
 
-const Blog = ({ addLike, index, removeBlog }) => {
-  // const [blogExpanded, setBlogExpanded] = useState(false)
+import { setNotification } from '../reducers/notificationReducer'
+import { like, remove } from '../reducers/blogReducer'
 
+const Blog = () => {
+  // const [blogExpanded, setBlogExpanded] = useState(false)
+  const dispatch = useDispatch()
 
 
   // const handleViewClick = () => {
@@ -41,19 +44,27 @@ const Blog = ({ addLike, index, removeBlog }) => {
   // }
 
   const id = useParams().id
+  
   let blogs = useSelector(state => state.blogs)
+
   const blog = blogs.find(blog => blog.id === id)
 
-  // if (!user) {
-  //   return null
-  // }
+  const index = blogs.findIndex(blog => blog.id === id)
+
+
+  const addLike = () => {
+    dispatch(like(blogs[index]))
+
+    dispatch(setNotification(`you voted '${blogs[index].title}'`, 2, 'green'))
+
+  }
 
   return (
     <div>
       <h2>{blog.title}</h2>
       <p />
       
-      {blog.likes}
+      {blog.likes} <button onClick={() => addLike()}>like</button>
       <p />
       Added by {blog.lauthor}
       

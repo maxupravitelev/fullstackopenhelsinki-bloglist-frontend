@@ -29,13 +29,6 @@ const Bloglist = ({ user }) => {
 
   blogs.sort((b, a) => a.likes - b.likes)
 
-  const addLike = (index) => {
-    console.log(blogs[index])
-    dispatch(like(blogs[index]))
-
-    dispatch(setNotification(`you voted '${blogs[index].title}'`, 2, 'green'))
-
-  }
 
   const removeBlog = (index) => {
     console.log(user)
