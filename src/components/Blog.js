@@ -51,11 +51,20 @@ const Blog = () => {
 
   const index = blogs.findIndex(blog => blog.id === id)
 
+  const user = useSelector(state => state.user)
+
 
   const addLike = () => {
     dispatch(like(blogs[index]))
 
     dispatch(setNotification(`you voted '${blogs[index].title}'`, 2, 'green'))
+
+  }
+
+  const removeBlog = () => {
+
+    dispatch(setNotification(`you deleted ${blogs[index].title}`, 2, 'green'))
+    dispatch(remove(blogs[index], user.id, index))
 
   }
 
@@ -67,7 +76,7 @@ const Blog = () => {
       {blog.likes} <button onClick={() => addLike()}>like</button>
       <p />
       Added by {blog.lauthor}
-      
+      <button onClick={() => removeBlog()}>delete</button>
     </div>
   )
 }

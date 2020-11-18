@@ -30,13 +30,7 @@ const Bloglist = ({ user }) => {
   blogs.sort((b, a) => a.likes - b.likes)
 
 
-  const removeBlog = (index) => {
-    console.log(user)
 
-    dispatch(setNotification(`you deleted ${blogs[index].title}`, 2, 'green'))
-    dispatch(remove(blogs[index], user.id, index))
-
-  }
 
   return (
 
