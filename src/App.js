@@ -31,7 +31,7 @@ const App = () => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
 
   const dispatch = useDispatch()
   // console.log(user)
@@ -42,28 +42,30 @@ const App = () => {
     dispatch(getAllUsers())
   }, [dispatch])
 
+  let userFromStore = useSelector(state => state.user)
 
   // check if user is stored locally
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
+      console.log(user)
+      // setUser(user)
       blogService.setToken(user.token)
     }
-  }, [])
+  }, [userFromStore])
 
   // once user data is dispatched to redux store, handle login
-  let userFromStore = useSelector(state => {console.log(state); return state.user})
+  // let userFromStore = useSelector(state => state.user)
 
   useEffect(() => {
-    window.localStorage.setItem(
-      'loggedBlogAppUser', JSON.stringify(userFromStore)
-    )
+    // window.localStorage.setItem(
+    //   'loggedBlogAppUser', JSON.stringify(userFromStore)
+    // )
 
-    blogService.setToken(userFromStore.token)
+    // blogService.setToken(userFromStore.token)
 
-    setUser(userFromStore)
+    // setUser(userFromStore)
   }, [userFromStore])
 
   const handleLogin = async (event) => {
@@ -85,8 +87,6 @@ const App = () => {
 
 
   const loginForm = () => {
-    // const hideWhenVisible = { display: loginVisible ? 'none' : '' }
-    // const showWhenVisible = { display: loginVisible ? '' : 'none' }
 
     return (
       <div>
@@ -113,12 +113,17 @@ const App = () => {
       <div>
         <Notification />
 
-        {user === null ? (
+        {/* { userFromStore === null ?
           loginForm()
-        ) : (
+         : ( */}
+     { (!userFromStore.token) ?
+          loginForm()
+         : (
           <div>
 
-            <Menu setUser={setUser}/>
+            <Menu />
+
+            {/* <Menu setUser={setUser}/> */}
             <Switch>
               <Route path='/blogs/:id'>
                 <Blog />

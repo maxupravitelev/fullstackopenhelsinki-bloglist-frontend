@@ -32,8 +32,8 @@ const Menu = ({ setUser }) => {
       <button onClick={() => {
         window.localStorage.removeItem('loggedBlogAppUser')
         window.localStorage.clear()
-        // dispatch(logoutUser())
-        setUser(null)
+        dispatch(logoutUser())
+        // setUser(null)
       }}>Log out</button>
 
     </div>
