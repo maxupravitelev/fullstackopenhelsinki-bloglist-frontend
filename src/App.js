@@ -31,42 +31,31 @@ const App = () => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  // const [user, setUser] = useState(null)
 
   const dispatch = useDispatch()
-  // console.log(user)
-  // const userR = useSelector(state => state.user)
 
   useEffect(() => {
     dispatch(initializeBlogs())
     dispatch(getAllUsers())
   }, [dispatch])
 
-  let userFromStore = useSelector(state => state.user)
+  let user = useSelector(state => state.user)
+
+  console.log(user)
+
+  if (user === 'init') {
+    user = null
+  }
 
   // check if user is stored locally
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      console.log(user)
-      // setUser(user)
       blogService.setToken(user.token)
     }
-  }, [userFromStore])
+  }, [user])
 
-  // once user data is dispatched to redux store, handle login
-  // let userFromStore = useSelector(state => state.user)
-
-  useEffect(() => {
-    // window.localStorage.setItem(
-    //   'loggedBlogAppUser', JSON.stringify(userFromStore)
-    // )
-
-    // blogService.setToken(userFromStore.token)
-
-    // setUser(userFromStore)
-  }, [userFromStore])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -113,32 +102,27 @@ const App = () => {
       <div>
         <Notification />
 
-        {/* { userFromStore === null ?
+        { ( user === null) ?
           loginForm()
-         : ( */}
-     { (!userFromStore.token) ?
-          loginForm()
-         : (
-          <div>
+          : (
+            <div>
 
-            <Menu />
+              <Menu />
+              <Switch>
+                <Route path='/blogs/:id'>
+                  <Blog />
+                </Route>
+                <Route path="/blogs">
+                  <AddBlogForm />
+                  <Bloglist />
+                </Route>
 
-            {/* <Menu setUser={setUser}/> */}
-            <Switch>
-              <Route path='/blogs/:id'>
-                <Blog />
-              </Route>
-              <Route path="/blogs">
-                <AddBlogForm />
-                <Bloglist />
-              </Route>
-
-              <Route path="/users">
-                <Userlist />
-              </Route>
-            </Switch>
-          </div>
-        )}
+                <Route path="/users">
+                  <Userlist />
+                </Route>
+              </Switch>
+            </div>
+          )}
 
         {/* <Footer /> */}
       </div>

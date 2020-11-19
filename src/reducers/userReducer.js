@@ -2,7 +2,7 @@ import loginService from '../services/login'
 import blogService from '../services/blogs'
 
 
-const userReducer = (state = [], action) => {
+const userReducer = (state = 'init', action) => {
   // console.log(state)
   // console.log(action)
 
