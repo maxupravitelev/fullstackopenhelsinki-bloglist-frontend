@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom'
 
 import { setNotification } from '../reducers/notificationReducer'
-import { like, remove } from '../reducers/blogReducer'
+import { like, remove, postComment } from '../reducers/blogReducer'
 
 const Blog = () => {
   const dispatch = useDispatch()
@@ -41,8 +41,14 @@ const Blog = () => {
 
   const comment = useField('comment')
 
-  const handleSubmit = () => {
-    // dispatch(postComment(blog, newComment))
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(postComment(blog, comment.value))
+    comment.onChange({
+      target: {
+        value: ''
+      }
+    })
   }
 
   return (
