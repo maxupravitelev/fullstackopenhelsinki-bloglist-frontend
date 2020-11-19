@@ -118,7 +118,7 @@ const App = () => {
         ) : (
           <div>
 
-            <Menu />
+            <Menu setUser={setUser}/>
             <Switch>
               <Route path='/blogs/:id'>
                 <Blog />
