@@ -42,7 +42,7 @@ const Blog = () => {
   const comment = useField('comment')
 
   const handleSubmit = () => {
-    //
+    // dispatch(postComment(blog, newComment))
   }
 
   return (
