@@ -15,6 +15,8 @@ const userReducer = (state = 'init', action) => {
     return action.data
   case 'LOGOUT':
     return action.data
+  case 'SET_FROM_LOCAL':
+    return action.data
   default:
     return state
   }
@@ -41,6 +43,17 @@ export const loginUser = (credentials) => {
     blogService.setToken(user.token)
     dispatch({
       type: 'LOGIN',
+      data: user
+    })
+  }
+}
+
+export const setUser = (user) => {
+  return async dispatch => {
+    console.log(user)
+
+    dispatch({
+      type: 'SET_FROM_LOCAL',
       data: user
     })
   }

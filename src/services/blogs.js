@@ -34,7 +34,6 @@ const update = async (blog) => {
 }
 
 const addComment = async (blogId, newComment) => {
-  console.log(newComment)
   const response = await axios.put(baseUrl+'/'+blogId+'/comments', { newComment })
   return response.data
 }
