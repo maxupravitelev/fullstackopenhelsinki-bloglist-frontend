@@ -2,6 +2,9 @@ import React from 'react'
 // import Notification from "./components/Notification";
 import PropTypes from 'prop-types'
 
+import {
+  TextField, Button
+} from '@material-ui/core'
 
 const LoginForm = ({ username, password, handleUsernameChange, handlePasswordChange, handleLogin }) => {
 
@@ -10,26 +13,27 @@ const LoginForm = ({ username, password, handleUsernameChange, handlePasswordCha
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>
-          username
-          <input
+          
+          <TextField
             id="username"
             type="text"
             value={username}
             name="Username"
+            label="username"
             onChange={handleUsernameChange}
           />
         </div>
         <div>
-          password
-          <input
+          <TextField
             id="password"
             type="password"
             value={password}
             name="Password"
+            label="Password"
             onChange={handlePasswordChange}
           />
         </div>
-        <button id="login-button" type="submit">login</button>
+        <Button variant="contained" color="primary" id="login-button" type="submit">login</Button>
       </form>
     </div>
   )

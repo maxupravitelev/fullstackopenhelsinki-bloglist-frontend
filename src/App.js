@@ -17,7 +17,7 @@ import Blog from './components/Blog'
 
 import blogService from './services/blogs'
 
-
+import Container from '@material-ui/core/Container'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
@@ -52,7 +52,6 @@ const App = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
       const userLocal = JSON.parse(loggedUserJSON)
-      console.log(userLocal)
       dispatch(setUser(userLocal))
       blogService.setToken(userLocal.token)
     }
@@ -99,36 +98,39 @@ const App = () => {
   }
 
   return (
-    <Router>
+    <Container>
 
-      <div>
-        <Notification />
+      <Router>
 
-        { ( user === null) ?
-          loginForm()
-          : (
-            <div>
+        <div>
+          <Notification />
 
-              <Menu />
-              <Switch>
-                <Route path='/blogs/:id'>
-                  <Blog />
-                </Route>
-                <Route path="/blogs">
-                  <AddBlogForm />
-                  <Bloglist />
-                </Route>
+          { ( user === null) ?
+            loginForm()
+            : (
+              <div>
 
-                <Route path="/users">
-                  <Userlist />
-                </Route>
-              </Switch>
-            </div>
-          )}
+                <Menu />
+                <Switch>
+                  <Route path='/blogs/:id'>
+                    <Blog />
+                  </Route>
+                  <Route path="/blogs">
+                    <AddBlogForm />
+                    <Bloglist />
+                  </Route>
 
-        {/* <Footer /> */}
-      </div>
-    </Router>
+                  <Route path="/users">
+                    <Userlist />
+                  </Route>
+                </Switch>
+              </div>
+            )}
+
+          {/* <Footer /> */}
+        </div>
+      </Router>
+    </Container>
   )
 }
 

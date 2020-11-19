@@ -1,6 +1,16 @@
 import React from 'react'
 // import blogService from '../services/blogs'
 
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from '@material-ui/core'
+
 import { useSelector } from 'react-redux'
 
 import {
@@ -25,10 +35,22 @@ const Bloglist = () => {
   return (
 
     <div>
-      {blogs.map((blog) => (
-        <p key={blog.id} style={blogStyle}><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></p>
-      ))}
-
+      <TableContainer component={Paper}>
+        <Table>
+          <TableBody>
+            {blogs.map((blog) => (
+              <TableRow key={blog.id}>
+                <TableCell>
+                  <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
+                </TableCell>
+                <TableCell>
+                  {blog.author}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
 
   )

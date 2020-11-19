@@ -50,8 +50,6 @@ export const loginUser = (credentials) => {
 
 export const setUser = (user) => {
   return async dispatch => {
-    console.log(user)
-
     dispatch({
       type: 'SET_FROM_LOCAL',
       data: user
