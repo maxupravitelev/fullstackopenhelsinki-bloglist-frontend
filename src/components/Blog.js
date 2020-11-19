@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useHistory } from 'react-router-dom'
 
+import  { useField } from '../hooks/index'
+
 import {
   useParams
 } from 'react-router-dom'
@@ -30,12 +32,17 @@ const Blog = () => {
 
     dispatch(setNotification(`you voted '${blogs[index].title}'`, 2, 'green'))
   }
-console.log(blog)
   const removeBlog = () => {
     dispatch(setNotification(`you deleted ${blogs[index].title}`, 2, 'green'))
     dispatch(remove(blogs[index], user.id, index))
 
     history.push('/blogs')
+  }
+
+  const comment = useField('comment')
+
+  const handleSubmit = () => {
+    //
   }
 
   return (
@@ -50,6 +57,12 @@ console.log(blog)
 
       <p />
       <h2>comments</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input {...comment} />
+        </div>
+        <button>add</button>
+      </form>
       {blog.comments.map((comment) => (
         // console.log(comment)
         <li key={comment}>{comment}</li>
