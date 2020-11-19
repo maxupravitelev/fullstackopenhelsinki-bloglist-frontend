@@ -11,23 +11,21 @@ const userReducer = (state = [], action) => {
     return action.password
   case 'LOGIN':
     return action.data
-  // case 'ALL_USERS':
-  //   return action.data
+  case 'LOGOUT':
+    return action.data
   default:
     return state
   }
 }
 
-// export const getAllUsers = () => {
-//   return async dispatch => {
-//     const allUsers = await userService.getAll()
-//     // console.log(allUsers)
-//     dispatch({
-//       type: 'ALL_USERS',
-//       data: allUsers
-//     })
-//   }
-// }
+export const logoutUser = () => {
+  return async dispatch => {
+    dispatch({
+      type: 'LOGOUT',
+      data: null
+    })
+  }
+}
 
 
 export const loginUser = (credentials) => {
@@ -42,22 +40,22 @@ export const loginUser = (credentials) => {
   }
 }
 
-export const setUsername = username => {
-  return dispatch => {
-    dispatch({
-      type: 'USERNAME',
-      data: username
-    })
-  }
-}
+// export const setUsername = username => {
+//   return dispatch => {
+//     dispatch({
+//       type: 'USERNAME',
+//       data: username
+//     })
+//   }
+// }
 
-export const setPassword = password => {
-  return dispatch => {
-    dispatch({
-      type: 'PASSWORD',
-      data: password
-    })
-  }
-}
+// export const setPassword = password => {
+//   return dispatch => {
+//     dispatch({
+//       type: 'PASSWORD',
+//       data: password
+//     })
+//   }
+// }
 
 export default userReducer
