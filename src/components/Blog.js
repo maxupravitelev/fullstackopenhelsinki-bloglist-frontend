@@ -30,7 +30,7 @@ const Blog = () => {
 
     dispatch(setNotification(`you voted '${blogs[index].title}'`, 2, 'green'))
   }
-
+console.log(blog)
   const removeBlog = () => {
     dispatch(setNotification(`you deleted ${blogs[index].title}`, 2, 'green'))
     dispatch(remove(blogs[index], user.id, index))
@@ -45,8 +45,15 @@ const Blog = () => {
 
       {blog.likes} <button onClick={() => addLike()}>like</button>
       <p />
-      Added by {blog.lauthor}
+      Added by {blog.author}
       <button onClick={() => removeBlog()}>delete</button>
+
+      <p />
+      <h2>comments</h2>
+      {blog.comments.map((comment) => (
+        // console.log(comment)
+        <li key={comment}>{comment}</li>
+      ))}
     </div>
   )
 }
