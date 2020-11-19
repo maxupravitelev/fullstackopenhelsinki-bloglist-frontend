@@ -47,7 +47,7 @@ const Menu = () => {
       USERS
           </Button>
 
-          {username} logged in
+          <em>{username} logged in</em>
 
           <Button color="inherit" onClick={() => {
             window.localStorage.removeItem('loggedBlogAppUser')

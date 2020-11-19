@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux'
 import { setNotification } from '../reducers/notificationReducer'
 import { createBlog } from '../reducers/blogReducer'
 
+import { Button } from '@material-ui/core'
+
+
 
 const AddBlogForm = () => {
   const dispatch = useDispatch()
@@ -93,7 +96,7 @@ const AddBlogForm = () => {
               onChange={handleBlogFormChange}
             />
           </div>
-          <button type="submit">create</button>
+          <Button variant="contained" color="primary"  type="submit">create</Button>
         </form>
       </Togglable>
     </div>

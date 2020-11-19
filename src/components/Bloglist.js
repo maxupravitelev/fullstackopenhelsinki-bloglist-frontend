@@ -9,6 +9,7 @@ import {
   TableContainer,
   TableRow,
   Paper,
+  Typography
 } from '@material-ui/core'
 
 import { useSelector } from 'react-redux'
@@ -36,6 +37,7 @@ const Bloglist = () => {
 
     <div>
       <TableContainer component={Paper}>
+        <Typography>
         <Table>
           <TableBody>
             {blogs.map((blog) => (
@@ -50,7 +52,9 @@ const Bloglist = () => {
             ))}
           </TableBody>
         </Table>
+        </Typography>
       </TableContainer>
+      
     </div>
 
   )
