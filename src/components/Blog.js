@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { useDispatch, useSelector } from 'react-redux'
-
 import { useHistory } from 'react-router-dom'
 
 import  { useField } from '../hooks/index'
@@ -15,7 +13,6 @@ import { like, remove, postComment } from '../reducers/blogReducer'
 
 import {
   TextField, Button, List, ListItem
-
 } from '@material-ui/core'
 
 const Blog = () => {
@@ -66,8 +63,6 @@ const Blog = () => {
       Added by {blog.author}
       <p />
       <Button variant="contained" color="primary" onClick={() => removeBlog()}>delete</Button>
-
-
       <h2>comments</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -77,7 +72,6 @@ const Blog = () => {
       </form>
       <List>
         {blog.comments.map((comment) => (
-        // console.log(comment)
           <ListItem key={comment + Math.random()}>■ {comment}</ListItem>
         ))}
       </List>

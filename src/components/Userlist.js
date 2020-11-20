@@ -22,7 +22,6 @@ const Userlist = ( ) => {
 
   let users = useSelector(state => state.users)
 
-
   return (
 
     <div>
@@ -41,7 +40,6 @@ const Userlist = ( ) => {
               <TableCell key={user.username}><Link to={`/users/${user._id}`}>{user.username}</Link></TableCell>
               <TableCell key={user.username + 'a'}>{user.blogs.length}</TableCell>
             </TableRow>
-
           ))}
         </TableBody>
       </Table>

@@ -1,5 +1,4 @@
 import React from 'react'
-// import blogService from '../services/blogs'
 
 import {
   Table,
@@ -24,7 +23,6 @@ const Bloglist = () => {
   blogs.sort((b, a) => a.likes - b.likes)
 
   return (
-
     <div>
       <TableContainer component={Paper}>
         <Table>
@@ -43,7 +41,6 @@ const Bloglist = () => {
         </Table>
       </TableContainer>
     </div>
-
   )
 }
 

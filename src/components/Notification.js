@@ -6,7 +6,6 @@ import { Alert } from '@material-ui/lab'
 const Notification = () => {
   const notification = useSelector(state => state.notification)
 
-  // todo: add error notifications https://material-ui.com/components/alert/
   if (notification) {
     return (
       <div>

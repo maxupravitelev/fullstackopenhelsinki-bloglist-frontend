@@ -1,5 +1,4 @@
 import React from 'react'
-// import Notification from "./components/Notification";
 import PropTypes from 'prop-types'
 
 import {

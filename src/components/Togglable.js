@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { Button } from '@material-ui/core'
 
-
 const Togglable = React.forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false)
 

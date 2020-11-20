@@ -31,7 +31,6 @@ export const logoutUser = () => {
   }
 }
 
-
 export const loginUser = (credentials) => {
   return async dispatch => {
     // console.log(credentials)
@@ -56,23 +55,5 @@ export const setUser = (user) => {
     })
   }
 }
-
-// export const setUsername = username => {
-//   return dispatch => {
-//     dispatch({
-//       type: 'USERNAME',
-//       data: username
-//     })
-//   }
-// }
-
-// export const setPassword = password => {
-//   return dispatch => {
-//     dispatch({
-//       type: 'PASSWORD',
-//       data: password
-//     })
-//   }
-// }
 
 export default userReducer
