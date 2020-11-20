@@ -13,7 +13,6 @@ const LoginForm = ({ username, password, handleUsernameChange, handlePasswordCha
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>
-          
           <TextField
             id="username"
             type="text"

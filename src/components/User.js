@@ -2,6 +2,8 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 
+import { List, ListItem } from '@material-ui/core'
+
 import {
   useParams
 } from 'react-router-dom'
@@ -18,11 +20,13 @@ const User = ( ) => {
   return (
     <div>
       <h2>{user.username}</h2>
-      {user.blogs.map((blog) => (
-        <li key={blog.title + Math.random()}>
-          {blog.title}
-        </li>
-      ))}
+      <List>
+        {user.blogs.map((blog) => (
+          <ListItem key={blog.title + Math.random()}>
+           ■ {blog.title}
+          </ListItem>
+        ))}
+      </List>
     </div>
 
   )

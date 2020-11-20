@@ -14,7 +14,8 @@ import { setNotification } from '../reducers/notificationReducer'
 import { like, remove, postComment } from '../reducers/blogReducer'
 
 import {
-  TextField, Button
+  TextField, Button, List, ListItem
+
 } from '@material-ui/core'
 
 const Blog = () => {
@@ -66,7 +67,7 @@ const Blog = () => {
       <p />
       <Button variant="contained" color="primary" onClick={() => removeBlog()}>delete</Button>
 
-      
+
       <h2>comments</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -74,10 +75,12 @@ const Blog = () => {
         </div>
         <Button variant="contained" color="primary">add</Button>
       </form>
-      {blog.comments.map((comment) => (
+      <List>
+        {blog.comments.map((comment) => (
         // console.log(comment)
-        <li key={comment + Math.random()}>{comment}</li>
-      ))}
+          <ListItem key={comment + Math.random()}>■ {comment}</ListItem>
+        ))}
+      </List>
     </div>
   )
 }
