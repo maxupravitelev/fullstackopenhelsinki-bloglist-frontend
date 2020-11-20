@@ -5,9 +5,7 @@ import { useDispatch } from 'react-redux'
 import { setNotification } from '../reducers/notificationReducer'
 import { createBlog } from '../reducers/blogReducer'
 
-import { Button } from '@material-ui/core'
-
-
+import { TextField, Button } from '@material-ui/core'
 
 const AddBlogForm = () => {
   const dispatch = useDispatch()
@@ -66,8 +64,8 @@ const AddBlogForm = () => {
       <Togglable buttonLabel='new blog' ref={blogFormRef}>
         <form onSubmit={handleSubmit}>
           <div>
-            title:
-            <input
+            <TextField
+              label="title"
               id="title"
               type="text"
               value={newBlog.title}
@@ -77,8 +75,8 @@ const AddBlogForm = () => {
             />
           </div>
           <div>
-            author:
-            <input
+            <TextField
+              label="author"
               id="author"
               type="text"
               value={newBlog.author}
@@ -87,8 +85,8 @@ const AddBlogForm = () => {
             />
           </div>
           <div>
-            url:
-            <input
+            <TextField
+              label="url"
               id="url"
               type="text"
               value={newBlog.url}
