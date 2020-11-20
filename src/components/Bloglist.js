@@ -2,14 +2,12 @@ import React from 'react'
 // import blogService from '../services/blogs'
 
 import {
-  Container,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableRow,
-  Paper,
-  Typography
+  Paper
 } from '@material-ui/core'
 
 import { useSelector } from 'react-redux'
@@ -37,7 +35,6 @@ const Bloglist = () => {
 
     <div>
       <TableContainer component={Paper}>
-        <Typography>
         <Table>
           <TableBody>
             {blogs.map((blog) => (
@@ -52,7 +49,6 @@ const Bloglist = () => {
             ))}
           </TableBody>
         </Table>
-        </Typography>
       </TableContainer>
       
     </div>

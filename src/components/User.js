@@ -19,7 +19,7 @@ const User = ( ) => {
     <div>
       <h2>{user.username}</h2>
       {user.blogs.map((blog) => (
-        <li key={blog.title + blog.author}>
+        <li key={blog.title + Math.random()}>
           {blog.title}
         </li>
       ))}

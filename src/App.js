@@ -55,7 +55,7 @@ const App = () => {
       dispatch(setUser(userLocal))
       blogService.setToken(userLocal.token)
     }
-  }, [])
+  }, [dispatch])
 
 
   const handleLogin = async (event) => {

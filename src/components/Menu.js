@@ -13,14 +13,6 @@ const Menu = () => {
 
 
 
-  const linkStyle = {
-    paddingRight: 5
-  }
-
-  const menuStyle = {
-    backgroundColor: 'lightgray'
-  }
-
   const user = useSelector(state => state.user)
   const username = user.username
 

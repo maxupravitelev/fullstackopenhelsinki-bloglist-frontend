@@ -71,7 +71,7 @@ const Blog = () => {
       </form>
       {blog.comments.map((comment) => (
         // console.log(comment)
-        <li key={comment}>{comment}</li>
+        <li key={comment + Math.random()}>{comment}</li>
       ))}
     </div>
   )
