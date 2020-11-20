@@ -13,6 +13,10 @@ import {
 import { setNotification } from '../reducers/notificationReducer'
 import { like, remove, postComment } from '../reducers/blogReducer'
 
+import {
+  TextField, Button
+} from '@material-ui/core'
+
 const Blog = () => {
   const dispatch = useDispatch()
 
@@ -56,18 +60,19 @@ const Blog = () => {
       <h2>{blog.title}</h2>
       <p />
 
-      {blog.likes} <button onClick={() => addLike()}>like</button>
+      Likes: {blog.likes} <Button variant="contained" color="primary" onClick={() => addLike()}>like</Button>
       <p />
       Added by {blog.author}
-      <button onClick={() => removeBlog()}>delete</button>
-
       <p />
+      <Button variant="contained" color="primary" onClick={() => removeBlog()}>delete</Button>
+
+      
       <h2>comments</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <input {...comment} />
+          <TextField label="comment" {...comment} />
         </div>
-        <button>add</button>
+        <Button variant="contained" color="primary">add</Button>
       </form>
       {blog.comments.map((comment) => (
         // console.log(comment)
