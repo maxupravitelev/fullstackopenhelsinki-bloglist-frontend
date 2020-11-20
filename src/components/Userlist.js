@@ -3,6 +3,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  TableHead,
+  Paper
+} from '@material-ui/core'
+
+import {
   Route, Link
 } from 'react-router-dom'
 
@@ -17,23 +27,24 @@ const Userlist = ( ) => {
 
     <div>
       <h2>Users</h2>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>blogs created</th>
-          </tr>
-        </thead>
-        <tbody>
+      <TableContainer component={Paper}></TableContainer>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell></TableCell>
+            <TableCell>blogs created</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {users.map((user, index) => (
-            <tr key={index}>
-              <td key={user.username}><Link to={`/users/${user._id}`}>{user.username}</Link></td>
-              <td key={user.username + 'a'}>{user.blogs.length}</td>
-            </tr>
+            <TableRow key={index}>
+              <TableCell key={user.username}><Link to={`/users/${user._id}`}>{user.username}</Link></TableCell>
+              <TableCell key={user.username + 'a'}>{user.blogs.length}</TableCell>
+            </TableRow>
 
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
       <Route path='/users/:id'>
         <User />
       </Route>

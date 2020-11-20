@@ -42,7 +42,6 @@ const Bloglist = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      
     </div>
 
   )
