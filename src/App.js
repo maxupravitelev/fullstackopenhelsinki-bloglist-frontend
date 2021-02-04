@@ -1,10 +1,8 @@
+// import React modules
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import {
-  BrowserRouter as Router,
-  Switch, Route
-} from 'react-router-dom'
-
+// import components
 import AddBlogForm from './components/AddBlogForm'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
@@ -14,21 +12,21 @@ import Userlist from './components/Userlist'
 import Menu from './components/Menu'
 import Blog from './components/Blog'
 
-
-import blogService from './services/blogs'
-
-import Container from '@material-ui/core/Container'
-
+// init redux and import reducers
 import { useDispatch, useSelector } from 'react-redux'
 import { setNotification } from './reducers/notificationReducer'
 import { initializeBlogs } from './reducers/blogReducer'
-
 import { loginUser, setUser } from './reducers/userReducer'
 import { getAllUsers } from './reducers/usersReducer'
 
+// import backend service
+import blogService from './services/blogs'
+
+// handle material ui
+import Container from '@material-ui/core/Container'
+
 
 const App = () => {
-
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -39,7 +37,7 @@ const App = () => {
     dispatch(getAllUsers())
   }, [dispatch])
 
-  let user = useSelector(state => state.user)
+  let user = useSelector((state) => state.user)
 
   console.log(user)
 
@@ -57,37 +55,36 @@ const App = () => {
     }
   }, [dispatch])
 
-
   const handleLogin = async (event) => {
     event.preventDefault()
 
     try {
-      dispatch(loginUser({
-        username,
-        password,
-      }))
+      dispatch(
+        loginUser({
+          username,
+          password,
+        })
+      )
 
       dispatch(setNotification(`'${username}' logged in`, 3, 'green'))
-
     } catch (exception) {
       dispatch(setNotification('Wrong credentials', 3, 'red'))
-
     }
   }
 
-
+  // render login form if user is not logged in
   const loginForm = () => {
-
     return (
       <div>
         <div>
           <Notification />
-
-          <Togglable buttonLabel='login'>
+          <Togglable buttonLabel="login">
             <LoginForm
               username={username}
               password={password}
-              handleUsernameChange={({ target }) => {setUsername(target.value)}}
+              handleUsernameChange={({ target }) => {
+                setUsername(target.value)
+              }}
               handlePasswordChange={({ target }) => setPassword(target.value)}
               handleLogin={handleLogin}
             />
@@ -99,33 +96,30 @@ const App = () => {
 
   return (
     <Container>
-
       <Router>
-
         <div>
           <Notification />
 
-          { ( user === null) ?
+          {user === null ? (
             loginForm()
-            : (
-              <div>
+          ) : (
+            <div>
+              <Menu />
+              <Switch>
+                <Route path="/blogs/:id">
+                  <Blog />
+                </Route>
+                <Route path="/blogs">
+                  <AddBlogForm />
+                  <Bloglist />
+                </Route>
 
-                <Menu />
-                <Switch>
-                  <Route path='/blogs/:id'>
-                    <Blog />
-                  </Route>
-                  <Route path="/blogs">
-                    <AddBlogForm />
-                    <Bloglist />
-                  </Route>
-
-                  <Route path="/users">
-                    <Userlist />
-                  </Route>
-                </Switch>
-              </div>
-            )}
+                <Route path="/users">
+                  <Userlist />
+                </Route>
+              </Switch>
+            </div>
+          )}
 
           {/* <Footer /> */}
         </div>
@@ -133,6 +127,5 @@ const App = () => {
     </Container>
   )
 }
-
 
 export default App

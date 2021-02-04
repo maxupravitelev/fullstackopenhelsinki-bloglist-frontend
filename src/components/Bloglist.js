@@ -1,24 +1,18 @@
 import React from 'react'
-
 import {
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableRow,
-  Paper
+  Paper,
 } from '@material-ui/core'
-
 import { useSelector } from 'react-redux'
-
-import {
-  Link
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const Bloglist = () => {
-
-  let blogs = useSelector(state => state.blogs)
+  let blogs = useSelector((state) => state.blogs)
 
   blogs.sort((b, a) => a.likes - b.likes)
 
@@ -32,9 +26,7 @@ const Bloglist = () => {
                 <TableCell>
                   <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
                 </TableCell>
-                <TableCell>
-                  {blog.author}
-                </TableCell>
+                <TableCell>{blog.author}</TableCell>
               </TableRow>
             ))}
           </TableBody>

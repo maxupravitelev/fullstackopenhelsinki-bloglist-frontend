@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { useSelector } from 'react-redux'
-
 import {
   Table,
   TableBody,
@@ -11,12 +9,11 @@ import {
   TableHead,
   Paper
 } from '@material-ui/core'
-
 import {
   Route, Link
 } from 'react-router-dom'
-
 import User from '../components/User'
+
 
 const Userlist = ( ) => {
 
@@ -47,7 +44,6 @@ const Userlist = ( ) => {
         <User />
       </Route>
     </div>
-
   )
 }
 

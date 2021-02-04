@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import {
   TextField, Button
 } from '@material-ui/core'
 
-const LoginForm = ({ username, password, handleUsernameChange, handlePasswordChange, handleLogin }) => {
 
+const LoginForm = ({ username, password, handleUsernameChange, handlePasswordChange, handleLogin }) => {
   return (
     <div>
       <h1>Login</h1>

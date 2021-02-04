@@ -1,12 +1,10 @@
 import React from 'react'
-
 import { useSelector } from 'react-redux'
-
 import { List, ListItem } from '@material-ui/core'
-
 import {
   useParams
 } from 'react-router-dom'
+
 
 const User = ( ) => {
   const id = useParams().id

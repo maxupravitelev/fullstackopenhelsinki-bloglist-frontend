@@ -1,11 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
 import { useDispatch, useSelector } from 'react-redux'
-
 import { logoutUser } from '../reducers/userReducer'
-
 import { AppBar, Toolbar, Button } from '@material-ui/core'
+
 
 const Menu = () => {
   const dispatch = useDispatch()
